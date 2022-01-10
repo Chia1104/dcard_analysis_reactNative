@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { ActivityIndicator, ScrollView, View, Text, FlatList } from "react-native";
+import {ActivityIndicator, ScrollView, View, Text, FlatList, StyleSheet} from "react-native";
 
 const DcardDetailScreen = ({ route, navigation, dcard }) => {
     const [isLoading, setLoading] = useState(true);
@@ -39,7 +39,7 @@ const DcardDetailScreen = ({ route, navigation, dcard }) => {
                     data={dcardData}
                     keyExtractor={({ Id }, index) => Id}
                     renderItem={({ item }) => (
-                        <View>
+                        <View style={styles.containerStyle}>
                             <Text>
                                 {item.Title}
                             </Text>
@@ -60,5 +60,14 @@ const DcardDetailScreen = ({ route, navigation, dcard }) => {
         </ScrollView>
     );
 };
+
+const styles = StyleSheet.create({
+    containerStyle: {
+        padding: 10,
+        margin: 10,
+        backgroundColor: "#66CDAA",
+        borderRadius: 10
+    }
+});
 
 export default DcardDetailScreen;
