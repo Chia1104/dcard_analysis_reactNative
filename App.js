@@ -17,7 +17,12 @@ export default function App() {
       <NavigationContainer>
         <View style={styles.screenTop}>
         </View>
-        <Tab.Navigator>
+        <Tab.Navigator
+            initialRouteName="Home"
+            activeColor="#f0edf6"
+            inactiveColor="#3e2465"
+            barStyle={{ backgroundColor: '#694fad' }}
+            screenOptions={{ headerShown: false }}>
           <Tab.Screen name="Post" >
               {() => (
                   <PostStack.Navigator>

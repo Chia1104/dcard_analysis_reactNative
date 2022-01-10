@@ -5,10 +5,10 @@ const DcardList = ({ dcard }) => {
     return (
         <View style={styles.cardContainerStyle}>
             <View style={styles.box1}>
-                <Text style={styles.title}>
+                <Text style={styles.title} numberOfLines={1}>
                     {dcard.Title}
                 </Text>
-                <Text style={styles.content} numberOfLines={1}>
+                <Text style={styles.content} numberOfLines={2}>
                     {dcard.Content}
                 </Text>
             </View>

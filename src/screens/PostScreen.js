@@ -39,7 +39,8 @@ const PostScreen = ({ navigation }) => {
                 <FlatList
                     data={dcardData}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => navigation.navigate('Detail')}>
+                        <TouchableOpacity onPress={() => navigation.navigate('Detail', {
+                            postId: item.Id})}>
                             <DcardList
                                 dcard={item}
                                 navigation={navigation}
