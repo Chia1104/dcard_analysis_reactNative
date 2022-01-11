@@ -1,5 +1,5 @@
 import React, { useEffect, useState} from "react";
-import { ActivityIndicator, SafeAreaView, FlatList, TouchableOpacity, RefreshControl, Text } from "react-native";
+import { ActivityIndicator, SafeAreaView, FlatList, TouchableOpacity, RefreshControl, Text, StyleSheet } from "react-native";
 import DcardList from "../components/DcardList";
 
 const PostScreen = ({ navigation }) => {
@@ -60,7 +60,7 @@ const PostScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            {isLoading ? <ActivityIndicator/> : (
+            {isLoading ? <ActivityIndicator size="large" color="#0000ff" style={styles.progressBarStyle}/> : (
                 <FlatList
                     data={dcardData}
                     renderItem={({ item }) =>
@@ -84,5 +84,12 @@ const PostScreen = ({ navigation }) => {
     );
 
 };
+
+const styles = StyleSheet.create({
+    progressBarStyle: {
+        flex: 1,
+        justifyContent: "center"
+    }
+});
 
 export default PostScreen;
