@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { ActivityIndicator, ScrollView, FlatList, TouchableOpacity } from "react-native";
+import React, { useEffect, useState} from "react";
+import { ActivityIndicator, SafeAreaView, FlatList, TouchableOpacity, RefreshControl, Text } from "react-native";
 import DcardList from "../components/DcardList";
-import DcardDetailScreen from "./DcardDetailScreen";
 
 const PostScreen = ({ navigation }) => {
 
     const [isLoading, setLoading] = useState(true);
     const [dcardData, setData] = useState([]);
+    const [moreData, setMoreData] = useState([]);
 
     const getDcards = async () => {
         try {
@@ -29,12 +29,37 @@ const PostScreen = ({ navigation }) => {
         }
     }
 
+    const getMoreDcards = async () => {
+        try {
+            const response = await fetch('https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/getAllDcard/before/237397832', {
+                method: 'GET',
+                credentials: 'omit',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+                }
+            });
+            const jsonRawData = await response.json();
+            setMoreData(jsonRawData);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    }
+
     useEffect(() => {
         getDcards();
     }, []);
 
+    const re_Render_FlatList = () => {
+        setMoreData(moreData);
+    }
+
     return (
-        <ScrollView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }}>
             {isLoading ? <ActivityIndicator/> : (
                 <FlatList
                     data={dcardData}
@@ -48,9 +73,14 @@ const PostScreen = ({ navigation }) => {
                         </TouchableOpacity>
                     }
                     keyExtractor={item => item.Id}
+                    refreshControl={
+                        <RefreshControl refreshing={isLoading}
+                                        onRefresh={getDcards} />
+                    }
+                    extraData={moreData}
                 />
             )}
-        </ScrollView>
+        </SafeAreaView>
     );
 
 };

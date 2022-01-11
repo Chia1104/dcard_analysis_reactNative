@@ -21,7 +21,7 @@ const DcardList = ({ dcard }) => {
                         ({dcard.SA_Score})
                     </Text>
                 </View>
-                <Text style={styles.detailStyle}>
+                <Text style={styles.dateStyle}>
                     {dcard.CreatedAt}
                 </Text>
 
@@ -58,10 +58,15 @@ const styles = StyleSheet.create({
     contentStyle: {
         fontSize: 17,
         marginBottom: 7,
-        lineHeight: 25
+        lineHeight: 25,
+        color: "#666666"
     },
     detailStyle: {
         fontSize: 15
+    },
+    dateStyle: {
+        fontSize: 15,
+        color: "#AAAAAA"
     }
 });
 

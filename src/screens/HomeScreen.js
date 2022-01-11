@@ -1,15 +1,15 @@
 import React from "react";
-import { ScrollView, FlatList, View, Text } from "react-native";
+import { SafeAreaView, FlatList, View, Text } from "react-native";
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
     return (
-        <ScrollView style={{ flex: 1 }}>
+        <SafeAreaView style={{ flex: 1 }}>
             <View>
                 <Text>
                     Home
                 </Text>
             </View>
-        </ScrollView>
+        </SafeAreaView>
     );
 };
 
