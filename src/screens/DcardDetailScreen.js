@@ -40,19 +40,37 @@ const DcardDetailScreen = ({ route, navigation, dcard }) => {
                     keyExtractor={({ Id }, index) => Id}
                     renderItem={({ item }) => (
                         <View style={styles.containerStyle}>
-                            <Text>
+                            <Text style={styles.titleStyle}>
                                 {item.Title}
                             </Text>
-                            <Text>
+                            <View style={styles.box1}>
+                                <View style={styles.box2}>
+                                    <Text style={styles.detailsStyle}>
+                                        {item.SA_Class}
+                                    </Text>
+                                    <Text style={styles.detailsStyle}>
+                                        ({item.SA_Score})
+                                    </Text>
+                                </View>
+
+                                <Text style={styles.detailsStyle}>
+                                    {item.CreatedAt}
+                                </Text>
+                            </View>
+                            <View style={styles.box1}>
+                                <Text style={styles.detailsStyle}>
+                                    {item.KeywordLevel1}
+                                </Text>
+                                <Text style={styles.detailsStyle}>
+                                    {item.KeywordLevel2}
+                                </Text>
+                                <Text style={styles.detailsStyle}>
+                                    {item.KeywordLevel3}
+                                </Text>
+                            </View>
+                            <Text style={styles.contentStyle}>
                                 {item.Content}
                             </Text>
-                            <Text>
-                                {item.CreatedAt}
-                            </Text>
-                            <Text>
-                                {item.SA_Class}
-                            </Text>
-
                         </View>
                     )}
                 />
@@ -64,9 +82,27 @@ const DcardDetailScreen = ({ route, navigation, dcard }) => {
 const styles = StyleSheet.create({
     containerStyle: {
         padding: 10,
-        margin: 10,
-        backgroundColor: "#66CDAA",
-        borderRadius: 10
+        margin: 10
+    },
+    box1: {
+        justifyContent: "space-between",
+        flexDirection: "row",
+        width: "100%",
+        marginBottom: 7
+    },
+    box2: {
+        flexDirection: "row"
+    },
+    titleStyle: {
+        fontSize: 25,
+        marginBottom: 7
+    },
+    detailsStyle: {
+        fontSize: 15
+    },
+    contentStyle: {
+        fontSize: 17,
+        marginBottom: 7
     }
 });
 

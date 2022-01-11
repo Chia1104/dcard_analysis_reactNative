@@ -5,23 +5,26 @@ const DcardList = ({ dcard }) => {
     return (
         <View style={styles.cardContainerStyle}>
             <View style={styles.box1}>
-                <Text style={styles.title} numberOfLines={1}>
+                <Text style={styles.titleStyle} numberOfLines={1}>
                     {dcard.Title}
                 </Text>
-                <Text style={styles.content} numberOfLines={2}>
+                <Text style={styles.contentStyle} numberOfLines={2}>
                     {dcard.Content}
                 </Text>
             </View>
             <View style={styles.box2}>
-                <Text style={styles.content1}>
-                    {dcard.Id}
-                </Text>
-                <Text>
-                    /
-                </Text>
-                <Text style={styles.content1}>
+                <View style={styles.box3}>
+                    <Text style={styles.detailStyle}>
+                        {dcard.SA_Class}
+                    </Text>
+                    <Text style={styles.detailStyle}>
+                        ({dcard.SA_Score})
+                    </Text>
+                </View>
+                <Text style={styles.detailStyle}>
                     {dcard.CreatedAt}
                 </Text>
+
             </View>
         </View>
     );
@@ -41,19 +44,23 @@ const styles = StyleSheet.create({
         width: "100%"
     },
     box2: {
+        justifyContent: "space-between",
         flexDirection: "row",
         width: "100%"
     },
-    title: {
+    box3: {
+        flexDirection: "row"
+    },
+    titleStyle: {
         fontSize: 25,
         marginBottom: 7
     },
-    content: {
+    contentStyle: {
         fontSize: 17,
         marginBottom: 7,
         lineHeight: 25
     },
-    content1: {
+    detailStyle: {
         fontSize: 15
     }
 });
