@@ -24,7 +24,6 @@ const DcardList = ({ dcard }) => {
                 <Text style={styles.dateStyle}>
                     {dcard.CreatedAt}
                 </Text>
-
             </View>
         </View>
     );

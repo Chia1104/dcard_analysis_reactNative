@@ -54,10 +54,6 @@ const PostScreen = ({ navigation }) => {
         getDcards();
     }, []);
 
-    const re_Render_FlatList = () => {
-        setMoreData(moreData);
-    }
-
     return (
         <SafeAreaView style={{ flex: 1 }}>
             {isLoading ? <ActivityIndicator size="large" color="#0000ff" style={styles.progressBarStyle}/> : (

@@ -53,7 +53,7 @@ const DcardDetailScreen = ({ route }) => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            {isLoading ? <ActivityIndicator/> : (
+            {isLoading ? <ActivityIndicator size="large" color="#0000ff" style={styles.progressBarStyle}/> : (
                 <FlatList
                     data={dcardData}
                     keyExtractor={({ Id }, index) => Id}
@@ -102,6 +102,10 @@ const DcardDetailScreen = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
+    progressBarStyle: {
+        flex: 1,
+        justifyContent: "center"
+    },
     containerStyle: {
         padding: 10,
         margin: 10
