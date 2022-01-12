@@ -1,4 +1,4 @@
-import React, { useEffect, useState} from "react";
+import React, { useEffect, useState, useCallback} from "react";
 import { ActivityIndicator, SafeAreaView, FlatList, TouchableOpacity, RefreshControl, Text, StyleSheet } from "react-native";
 import DcardList from "../components/DcardList";
 
@@ -10,7 +10,7 @@ const PostScreen = ({ navigation }) => {
 
     const getDcards = async () => {
         try {
-            const response = await fetch('https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/getAllDcard', {
+            const response = await fetch('https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/getAllDcard/30', {
                 method: 'GET',
                 credentials: 'omit',
                 headers: {
@@ -31,7 +31,7 @@ const PostScreen = ({ navigation }) => {
 
     const getMoreDcards = async () => {
         try {
-            const response = await fetch('https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/getAllDcard/before/237397832', {
+            const response = await fetch('https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/getAllDcard/before/237397832/30', {
                 method: 'GET',
                 credentials: 'omit',
                 headers: {
@@ -69,10 +69,8 @@ const PostScreen = ({ navigation }) => {
                         </TouchableOpacity>
                     }
                     keyExtractor={item => item.Id}
-                    refreshControl={
-                        <RefreshControl refreshing={isLoading}
-                                        onRefresh={getDcards} />
-                    }
+                    onEndReached={getMoreDcards}
+                    onEndReachedThreshold={0.9}
                     extraData={moreData}
                 />
             )}
