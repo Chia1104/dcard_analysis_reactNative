@@ -19,9 +19,9 @@ export default function App() {
         </View>
         <Tab.Navigator
             initialRouteName="Home"
-            activeColor="#f0edf6"
-            inactiveColor="#3e2465"
-            barStyle={{ backgroundColor: '#694fad' }}
+            activeColor="#000000"
+            inactiveColor="#AAAAAA"
+            barStyle={{ backgroundColor: '#ffffff' }}
             screenOptions={{ headerShown: false }}>
           <Tab.Screen name="Post" >
               {() => (
