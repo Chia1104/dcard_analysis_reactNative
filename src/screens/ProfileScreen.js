@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView, Text } from "react-native";
 
-const SettingsScreen = () => {
+const ProfileScreen = () => {
     return (
         <SafeAreaView style={{ flex: 1 }}>
             <Text>
@@ -11,4 +11,4 @@ const SettingsScreen = () => {
     );
 };
 
-export default SettingsScreen;
+export default ProfileScreen;
