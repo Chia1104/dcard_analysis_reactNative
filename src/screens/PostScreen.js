@@ -19,7 +19,7 @@ const PostScreen = ({ navigation }) => {
 
     const getDcards = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/getAllDcard/30', {
+            const response = await fetch('https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/getAllDcard/30', {
                 method: 'GET',
                 credentials: 'omit',
                 headers: {
@@ -40,7 +40,7 @@ const PostScreen = ({ navigation }) => {
 
     const getMoreDcards = async () => {
         try {
-            const response = await fetch('http://127.0.0.1:8000/api/getAllDcard/before/237397832/30', {
+            const response = await fetch('https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/getAllDcard/before/237397832/30', {
                 method: 'GET',
                 credentials: 'omit',
                 headers: {

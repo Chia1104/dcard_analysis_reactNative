@@ -5,7 +5,7 @@ const DcardDetailScreen = ({ route }) => {
     const [isLoading, setLoading] = useState(true);
     const [dcardData, setData] = useState([]);
     const {postId} = route.params;
-    const articleURL = ' http://127.0.0.1:8000/api/article/' + postId;
+    const articleURL = 'https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/article/' + postId;
 
     const getDcardDetail = async () => {
         try {
