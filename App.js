@@ -85,6 +85,7 @@ export default function App() {
                             tabBarIcon: ({ color, size }) => (
                                 <MaterialCommunityIcons name="chat-processing-outline" color={color} size={25} />
                             ),
+                            tabBarBadge: 3,
                         }}>
                 {() => (
                     <ChatStack.Navigator>
