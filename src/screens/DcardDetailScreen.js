@@ -134,6 +134,7 @@ const styles = StyleSheet.create({
     contentStyle: {
         fontSize: 17,
         marginBottom: 7,
+        lineHeight: 25,
         color: "#666666"
     }
 });
