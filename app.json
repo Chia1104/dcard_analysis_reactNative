@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "CGU Dcard Analysis",
+    "githubUrl": "https://github.com/Chia1104/dcard_analysis_reactNative"
   }
 }
