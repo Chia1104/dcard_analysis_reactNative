@@ -33,10 +33,12 @@ const styles = StyleSheet.create({
     cardContainerStyle: {
         justifyContent: "space-between",
         alignItems: "flex-start",
-        padding: 10,
-        margin: 10,
-        backgroundColor: "#CCDDFF",
-        borderRadius: 10
+        paddingTop: 10,
+        paddingBottom: 10,
+        paddingLeft: 20,
+        paddingRight: 20,
+        marginBottom: 3,
+        backgroundColor: "white",
     },
     box1: {
         flexDirection: "column",

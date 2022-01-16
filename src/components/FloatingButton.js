@@ -4,7 +4,7 @@ import {
 } from "react-native";
 import { FAB, Portal, Provider } from 'react-native-paper';
 
-const FloatingBotton = () => {
+const FloatingButton = () => {
     const [state, setState] = React.useState({ open: false });
     const onStateChange = ({ open }) => setState({ open });
     const { open } = state;
@@ -61,4 +61,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default FloatingBotton;
+export default FloatingButton;

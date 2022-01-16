@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, FlatList, View, Text } from "react-native";
+import { SafeAreaView, FlatList, View, Text, StyleSheet } from "react-native";
 
 const ChartScreen = () => {
     return (

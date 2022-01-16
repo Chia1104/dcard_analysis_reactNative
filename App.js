@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import {Button, StyleSheet, View} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -11,6 +11,7 @@ import ChatScreen from './src/screens/ChatScreen';
 import ProfileScreen from './src/screens/ProfileScreen.js';
 import HomeScreen from './src/screens/HomeScreen.js';
 import DcardDetailScreen from './src/screens/DcardDetailScreen.js';
+import SearchScreen from './src/screens/SearchScreen.js';
 
 const Tab = createMaterialBottomTabNavigator();
 const PostStack = createNativeStackNavigator();
@@ -19,7 +20,7 @@ const ChartStack = createNativeStackNavigator();
 const ChatStack = createNativeStackNavigator();
 const ProfileStack = createNativeStackNavigator();
 
-export default function App() {
+export default function App({ navigation }) {
   return (
       <NavigationContainer>
           <View style={styles.screenTop}>
@@ -60,8 +61,18 @@ export default function App() {
                           <PostStack.Screen
                               name="Post"
                               component={PostScreen}
+                              options={{
+                                  headerRight: () => (
+                                      <Button
+                                          // onPress={() => navigation.navigate('Search')}
+                                          title="Search"
+                                          color="black"
+                                      />
+                                  ),
+                              }}
                           />
                           <PostStack.Screen name="Detail" component={DcardDetailScreen} />
+                          <PostStack.Screen name="Search" component={SearchScreen} />
                       </PostStack.Navigator>
                   )}
               </Tab.Screen>

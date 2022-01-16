@@ -1,17 +1,13 @@
 import React, { useEffect, useState, useCallback} from "react";
 import { ActivityIndicator, SafeAreaView, FlatList, TouchableOpacity, RefreshControl, Text, StyleSheet } from "react-native";
 import DcardList from "../components/DcardList";
-import FloatingBotton from "../components/FloatingBotton";
-import { Searchbar } from 'react-native-paper';
+import FloatingButton from "../components/FloatingButton";
 
 const PostScreen = ({ navigation }) => {
 
     const [isLoading, setLoading] = useState(true);
     const [dcardData, setData] = useState([]);
     const [moreData, setMoreData] = useState([]);
-
-    const [searchQuery, setSearchQuery] = React.useState('');
-    const onChangeSearch = query => setSearchQuery(query);
 
     const getDcards = async () => {
         try {
@@ -34,7 +30,7 @@ const PostScreen = ({ navigation }) => {
         }
     }
 
-    const getMoreDcards = async () => {
+    const getMoreDcards = useCallback(async () => {
         try {
             const response = await fetch('https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/getAllDcard/before/237397832/30', {
                 method: 'GET',
@@ -53,7 +49,7 @@ const PostScreen = ({ navigation }) => {
         } finally {
             setLoading(false);
         }
-    }
+    }, [moreData]);
 
     useEffect(() => {
         getDcards();
@@ -61,11 +57,6 @@ const PostScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={{ flex: 1 }}>
-            <Searchbar
-                placeholder="Search"
-                onChangeText={onChangeSearch}
-                value={searchQuery}
-            />
             {isLoading ? <ActivityIndicator size="large" color="#0000ff" style={styles.progressBarStyle}/> : (
                 <FlatList
                     data={dcardData}
@@ -84,7 +75,7 @@ const PostScreen = ({ navigation }) => {
                     extraData={moreData}
                 />
             )}
-            <FloatingBotton/>
+            <FloatingButton/>
         </SafeAreaView>
     );
 
