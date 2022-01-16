@@ -3,7 +3,6 @@ import {
     StyleSheet
 } from "react-native";
 import { FAB, Portal, Provider } from 'react-native-paper';
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const FloatingBotton = () => {
     const [state, setState] = React.useState({ open: false });
