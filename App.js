@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import 'react-native-gesture-handler';
 
 import PostScreen from './src/screens/PostScreen';
 import ChartScreen from './src/screens/ChartScreen';
@@ -30,7 +31,7 @@ export default function App() {
               barStyle={{ backgroundColor: '#ffffff' }}
               screenOptions={{ headerShown: false }}>
               <Tab.Screen
-                  name="Home"
+                  name="homeTab"
                   options={{
                       tabBarLabel: 'Home',
                       tabBarIcon: ({ color, size }) => (
@@ -47,7 +48,7 @@ export default function App() {
                   )}
               </Tab.Screen>
               <Tab.Screen
-                  name="Post"
+                  name="postTab"
                   options={{
                       tabBarLabel: 'Post',
                       tabBarIcon: ({ color, size }) => (
@@ -75,7 +76,7 @@ export default function App() {
                   )}
               </Tab.Screen>
               <Tab.Screen
-                  name="Chart"
+                  name="chartTab"
                   options={{
                       tabBarLabel: 'Chart',
                       tabBarIcon: ({ color, size }) => (
@@ -92,7 +93,7 @@ export default function App() {
                   )}
               </Tab.Screen>
               <Tab.Screen
-                  name="Chat"
+                  name="chatTab"
                   options={{
                       tabBarLabel: 'Chat',
                       tabBarIcon: ({ color, size }) => (
@@ -110,7 +111,7 @@ export default function App() {
                   )}
               </Tab.Screen>
               <Tab.Screen
-                  name="Profile"
+                  name="profileTab"
                   options={{
                       tabBarLabel: 'Profile',
                       tabBarIcon: ({ color, size }) => (
