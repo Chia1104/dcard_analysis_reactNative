@@ -20,7 +20,7 @@ const ChartStack = createNativeStackNavigator();
 const ChatStack = createNativeStackNavigator();
 const ProfileStack = createNativeStackNavigator();
 
-export default function App({ navigation }) {
+export default function App() {
   return (
       <NavigationContainer>
           <View style={styles.screenTop}>
@@ -61,15 +61,15 @@ export default function App({ navigation }) {
                           <PostStack.Screen
                               name="Post"
                               component={PostScreen}
-                              options={{
-                                  headerRight: () => (
+                              options={({navigation}) => ({
+                                  headerRight: () =>
                                       <Button
-                                          // onPress={() => navigation.navigate('Search')}
-                                          title="Search"
-                                          color="black"
+                                        onPress={() => navigation.navigate('Search')}
+                                        title="Search"
+                                        color="black"
+                                        icon="magnify"
                                       />
-                                  ),
-                              }}
+                              })}
                           />
                           <PostStack.Screen name="Detail" component={DcardDetailScreen} />
                           <PostStack.Screen name="Search" component={SearchScreen} />
