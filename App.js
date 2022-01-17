@@ -23,8 +23,6 @@ const ProfileStack = createNativeStackNavigator();
 export default function App() {
   return (
       <NavigationContainer>
-          <View style={styles.screenTop}>
-          </View>
           <Tab.Navigator
               initialRouteName="Home"
               activeColor="#000000"
