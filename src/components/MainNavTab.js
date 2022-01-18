@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, StyleSheet, View} from 'react-native';
+import {Button, StyleSheet, View, useColorScheme} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
@@ -22,13 +22,20 @@ const ChatStack = createNativeStackNavigator();
 const ProfileStack = createNativeStackNavigator();
 
 const MainNavTab = () => {
+    const colorScheme = useColorScheme();
+
+    const themeTextStyle = colorScheme === 'light' ? styles.lightThemeText : styles.darkThemeText;
+    const themeActiveColor = colorScheme === 'light' ? "black" : "white";
+    const themeContainerStyle =
+        colorScheme === 'light' ? styles.lightContainer : styles.darkContainer;
+
     return (
         <NavigationContainer>
             <Tab.Navigator
                 initialRouteName="Home"
-                activeColor="#000000"
+                activeColor={themeActiveColor}
                 inactiveColor="#AAAAAA"
-                barStyle={{ backgroundColor: '#ffffff' }}
+                barStyle={themeContainerStyle}
                 screenOptions={{ headerShown: false }}>
                 <Tab.Screen
                     name="homeTab"
@@ -41,8 +48,16 @@ const MainNavTab = () => {
                     {() => (
                         <HomeStack.Navigator>
                             <HomeStack.Screen
-                                name="Home"
+                                name="homeStack"
                                 component={HomeScreen}
+                                options={{
+                                    title: 'Home',
+                                    headerStyle: {themeContainerStyle},
+                                    headerTintColor: {themeActiveColor},
+                                    headerTitleStyle: {
+                                        fontWeight: 'bold',
+                                    },
+                                }}
                             />
                         </HomeStack.Navigator>
                     )}
@@ -131,5 +146,25 @@ const MainNavTab = () => {
         </NavigationContainer>
     );
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    lightContainer: {
+        backgroundColor: 'white',
+    },
+    darkContainer: {
+        backgroundColor: 'black',
+    },
+    lightThemeText: {
+        color: 'black',
+    },
+    darkThemeText: {
+        color: 'white',
+    },
+});
 
 export default MainNavTab;
