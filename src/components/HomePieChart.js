@@ -11,9 +11,9 @@ const HomePieChart = () => {
                 { x: "Negative", y: 55 }
             ]}
             colorScale={["#00DDAA", "#FFDD55", "#FFA488"]}
-            animate={{
-                duration: 2000
-            }}
+            // animate={{
+            //     duration: 2000
+            // }}
             labels={({ datum }) => datum.y}
             innerRadius={100}
         />

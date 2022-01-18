@@ -6,11 +6,10 @@ const HomeGBChart = () => {
     return (
         <VictoryChart width={350} theme={VictoryTheme.material}>
             <VictoryGroup offset={20}
-                          colorScale={"qualitative"}
-                          animate={{
-                              duration: 2000,
-                              onLoad: { duration: 1000 }
-                          }}
+                          // animate={{
+                          //     duration: 2000,
+                          //     onLoad: { duration: 1000 }
+                          // }}
                           categories={{
                               x: ["2021-11", "2021-10", "2021-09"]
                           }}
