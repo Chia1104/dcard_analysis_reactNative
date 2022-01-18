@@ -17,14 +17,21 @@ const ProfileScreen = () => {
 
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
-            <Text>
-                Settings
-            </Text>
+            <View style={styles.container}>
+                <Text style={[themeTextStyle]}>
+                    Profile
+                </Text>
+            </View>
         </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
     lightContainer: {
         backgroundColor: 'white',
     },
@@ -35,10 +42,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5F5F5',
     },
     darkContainer2: {
-        backgroundColor: '#262626',
+        backgroundColor: '#1f1f1f',
     },
     darkItemContainer: {
-        backgroundColor: '#474747',
+        backgroundColor: '#262626',
     },
     lightThemeText: {
         color: 'black',

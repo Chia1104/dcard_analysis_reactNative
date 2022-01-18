@@ -17,9 +17,9 @@ const ChatScreen = () => {
 
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
-            <View>
-                <Text>
-                    chat
+            <View style={styles.container}>
+                <Text style={[themeTextStyle]}>
+                    Chat Comming Soon
                 </Text>
             </View>
         </SafeAreaView>
@@ -27,6 +27,11 @@ const ChatScreen = () => {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
     lightContainer: {
         backgroundColor: 'white',
     },
@@ -37,10 +42,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5F5F5',
     },
     darkContainer2: {
-        backgroundColor: '#262626',
+        backgroundColor: '#1f1f1f',
     },
     darkItemContainer: {
-        backgroundColor: '#474747',
+        backgroundColor: '#262626',
     },
     lightThemeText: {
         color: 'black',

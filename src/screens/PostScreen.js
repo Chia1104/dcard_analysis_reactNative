@@ -108,10 +108,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5F5F5',
     },
     darkContainer2: {
-        backgroundColor: '#262626',
+        backgroundColor: '#1f1f1f',
     },
     darkItemContainer: {
-        backgroundColor: '#474747',
+        backgroundColor: '#262626',
     },
     lightThemeText: {
         color: 'black',

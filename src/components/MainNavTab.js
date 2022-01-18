@@ -1,10 +1,10 @@
 import React from 'react';
-import {Button, StyleSheet, View, useColorScheme} from 'react-native';
+import {StyleSheet, View, useColorScheme} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import {Portal, Provider} from "react-native-paper";
+import {ToggleButton } from "react-native-paper";
 
 import HomeScreen from "../screens/HomeScreen";
 import PostScreen from "../screens/PostScreen";
@@ -85,9 +85,8 @@ const MainNavTab = () => {
                                 options={
                                 ({navigation}) => ({
                                     headerRight: () =>
-                                        <Button
+                                        <ToggleButton
                                             onPress={() => navigation.navigate('searchStack')}
-                                            title="Search"
                                             color={themeTextColor}
                                             icon="magnify"
                                         />,
@@ -206,6 +205,12 @@ const MainNavTab = () => {
                                     headerTitleStyle: {
                                         fontWeight: 'bold',
                                     },
+                                    headerRight: () =>
+                                        <ToggleButton
+                                            // onPress={() => navigation.navigate('searchStack')}
+                                            color={themeTextColor}
+                                            icon="cog-outline"
+                                        />,
                                 }}
                             />
                         </ProfileStack.Navigator>
@@ -232,10 +237,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5F5F5',
     },
     darkContainer2: {
-        backgroundColor: '#262626',
+        backgroundColor: '#1f1f1f',
     },
     darkItemContainer: {
-        backgroundColor: '#474747',
+        backgroundColor: '#262626',
     },
     lightThemeText: {
         color: 'black',
