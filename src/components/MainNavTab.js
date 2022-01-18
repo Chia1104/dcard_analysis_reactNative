@@ -25,15 +25,20 @@ const MainNavTab = () => {
     const colorScheme = useColorScheme();
 
     const themeTextStyle = colorScheme === 'light' ? styles.lightThemeText : styles.darkThemeText;
-    const themeActiveColor = colorScheme === 'light' ? "black" : "white";
+    const themeTextColor = colorScheme === 'light' ? "black" : "white";
     const themeContainerStyle =
         colorScheme === 'light' ? styles.lightContainer : styles.darkContainer;
+    const themeContainerStyle2 =
+        colorScheme === 'light' ? styles.lightContainer2 : styles.darkContainer2;
+    const themeItemContainerStyle =
+        colorScheme === 'light' ? styles.lightContainer : styles.darkItemContainer;
+    const themeContainerColor = colorScheme === 'light' ? "white" : "black";
 
     return (
         <NavigationContainer>
             <Tab.Navigator
                 initialRouteName="Home"
-                activeColor={themeActiveColor}
+                activeColor={themeTextColor}
                 inactiveColor="#AAAAAA"
                 barStyle={themeContainerStyle}
                 screenOptions={{ headerShown: false }}>
@@ -52,8 +57,10 @@ const MainNavTab = () => {
                                 component={HomeScreen}
                                 options={{
                                     title: 'Home',
-                                    headerStyle: {themeContainerStyle},
-                                    headerTintColor: {themeActiveColor},
+                                    headerStyle: {
+                                        backgroundColor: {themeContainerColor}
+                                    },
+                                    headerTintColor: {themeTextColor},
                                     headerTitleStyle: {
                                         fontWeight: 'bold',
                                     },
@@ -73,20 +80,52 @@ const MainNavTab = () => {
                     {() => (
                         <PostStack.Navigator>
                             <PostStack.Screen
-                                name="Post"
+                                name="postStack"
                                 component={PostScreen}
-                                options={({navigation}) => ({
+                                options={
+                                ({navigation}) => ({
                                     headerRight: () =>
                                         <Button
-                                            onPress={() => navigation.navigate('Search')}
+                                            onPress={() => navigation.navigate('searchStack')}
                                             title="Search"
-                                            color="black"
+                                            color={themeTextColor}
                                             icon="magnify"
-                                        />
+                                        />,
+                                    title: 'Post',
+                                    headerStyle: {
+                                        backgroundColor: {themeContainerColor}
+                                    },
+                                    headerTintColor: {themeTextColor},
+                                    headerTitleStyle: {
+                                        fontWeight: 'bold',
+                                    },
                                 })}
                             />
-                            <PostStack.Screen name="Detail" component={DcardDetailScreen} />
-                            <PostStack.Screen name="Search" component={SearchScreen} />
+                            <PostStack.Screen
+                                name="detailStack"
+                                component={DcardDetailScreen}
+                                options={{
+                                    title: 'Detail',
+                                    headerStyle: {
+                                        backgroundColor: {themeContainerColor}
+                                    },
+                                    headerTintColor: {themeTextColor},
+                                    headerTitleStyle: {
+                                        fontWeight: 'bold',
+                                    },
+                                }}/>
+                            <PostStack.Screen
+                                name="searchStack"
+                                component={SearchScreen} options={{
+                                title: 'Search',
+                                headerStyle: {
+                                    backgroundColor: {themeContainerColor}
+                                },
+                                headerTintColor: {themeTextColor},
+                                headerTitleStyle: {
+                                    fontWeight: 'bold',
+                                },
+                            }}/>
                         </PostStack.Navigator>
                     )}
                 </Tab.Screen>
@@ -101,8 +140,18 @@ const MainNavTab = () => {
                     {() => (
                         <ChartStack.Navigator>
                             <ChartStack.Screen
-                                name="Chart"
+                                name="chartStack"
                                 component={ChartScreen}
+                                options={{
+                                    title: 'Chart',
+                                    headerStyle: {
+                                        backgroundColor: {themeContainerColor}
+                                    },
+                                    headerTintColor: {themeTextColor},
+                                    headerTitleStyle: {
+                                        fontWeight: 'bold',
+                                    },
+                                }}
                             />
                         </ChartStack.Navigator>
                     )}
@@ -119,8 +168,18 @@ const MainNavTab = () => {
                     {() => (
                         <ChatStack.Navigator>
                             <ChatStack.Screen
-                                name="Chat"
+                                name="chatStack"
                                 component={ChatScreen}
+                                options={{
+                                    title: 'Chat',
+                                    headerStyle: {
+                                        backgroundColor: {themeContainerColor}
+                                    },
+                                    headerTintColor: {themeTextColor},
+                                    headerTitleStyle: {
+                                        fontWeight: 'bold',
+                                    },
+                                }}
                             />
                         </ChatStack.Navigator>
                     )}
@@ -136,8 +195,18 @@ const MainNavTab = () => {
                     {() => (
                         <ProfileStack.Navigator>
                             <ProfileStack.Screen
-                                name="Profile"
+                                name="profileStack"
                                 component={ProfileScreen}
+                                options={{
+                                    title: 'Profile',
+                                    headerStyle: {
+                                        backgroundColor: {themeContainerColor}
+                                    },
+                                    headerTintColor: {themeTextColor},
+                                    headerTitleStyle: {
+                                        fontWeight: 'bold',
+                                    },
+                                }}
                             />
                         </ProfileStack.Navigator>
                     )}
@@ -158,6 +227,15 @@ const styles = StyleSheet.create({
     },
     darkContainer: {
         backgroundColor: 'black',
+    },
+    lightContainer2: {
+        backgroundColor: '#F5F5F5',
+    },
+    darkContainer2: {
+        backgroundColor: '#262626',
+    },
+    darkItemContainer: {
+        backgroundColor: '#474747',
     },
     lightThemeText: {
         color: 'black',
