@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import {ToggleButton } from "react-native-paper";
+import {IconButton } from "react-native-paper";
 
 import HomeScreen from "../screens/HomeScreen";
 import PostScreen from "../screens/PostScreen";
@@ -87,7 +87,7 @@ const MainNavTab = () => {
                                 options={
                                 ({navigation}) => ({
                                     headerRight: () =>
-                                        <ToggleButton
+                                        <IconButton
                                             onPress={() => navigation.navigate('searchStack')}
                                             color={themeTextColor}
                                             icon="magnify"
@@ -208,7 +208,7 @@ const MainNavTab = () => {
                                         fontWeight: 'bold',
                                     },
                                     headerRight: () =>
-                                        <ToggleButton
+                                        <IconButton
                                             // onPress={() => navigation.navigate('searchStack')}
                                             color={themeTextColor}
                                             icon="cog-outline"
