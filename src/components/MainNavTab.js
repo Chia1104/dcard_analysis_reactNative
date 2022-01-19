@@ -15,6 +15,7 @@ import ChartScreen from "../screens/ChartScreen";
 import ChatScreen from "../screens/ChatScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ChartTopTab from "./ChartTopTab";
+import ProfileBottomSheet from "./ProfileBottomSheet";
 
 const BottomTab = createMaterialBottomTabNavigator();
 const PostStack = createNativeStackNavigator();
@@ -198,23 +199,36 @@ const MainNavTab = () => {
                             <ProfileStack.Screen
                                 name="profileStack"
                                 component={ProfileScreen}
-                                options={{
-                                    title: 'Profile',
-                                    headerStyle: {
-                                        backgroundColor: {themeContainerColor}
-                                    },
-                                    headerTintColor: {themeTextColor},
-                                    headerTitleStyle: {
-                                        fontWeight: 'bold',
-                                    },
-                                    headerRight: () =>
-                                        <IconButton
-                                            // onPress={() => navigation.navigate('searchStack')}
-                                            color={themeTextColor}
-                                            icon="cog-outline"
-                                        />,
-                                }}
+                                options={
+                                    ({navigation}) => ({
+                                        headerRight: () =>
+                                            <IconButton
+                                                onPress={() => navigation.navigate('searchStack')}
+                                                color={themeTextColor}
+                                                icon="cog-outline"
+                                            />,
+                                        title: 'Profile',
+                                        headerStyle: {
+                                            backgroundColor: {themeContainerColor}
+                                        },
+                                        headerTintColor: {themeTextColor},
+                                        headerTitleStyle: {
+                                            fontWeight: 'bold',
+                                        },
+                                    })}
                             />
+                            <PostStack.Screen
+                                name="searchStack"
+                                component={SearchScreen} options={{
+                                title: 'Search',
+                                headerStyle: {
+                                    backgroundColor: {themeContainerColor}
+                                },
+                                headerTintColor: {themeTextColor},
+                                headerTitleStyle: {
+                                    fontWeight: 'bold',
+                                },
+                            }}/>
                         </ProfileStack.Navigator>
                     )}
                 </BottomTab.Screen>

@@ -1,5 +1,5 @@
-import React from "react";
-import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme } from "react-native";
+import React, { useRef } from "react";
+import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme, Button } from "react-native";
 
 import ProfileBottomSheet from "../components/ProfileBottomSheet";
 
@@ -17,14 +17,23 @@ const ProfileScreen = () => {
         colorScheme === 'light' ? styles.lightContainer : styles.darkItemContainer;
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
 
+    const bottomSheetModalRef = useRef(1);
+    const handlePresentPress = () => bottomSheetModalRef.current.present()
+
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
             <View style={styles.container}>
                 <Text style={[themeTextStyle]}>
                     Profile
                 </Text>
+                <Button
+                    title="Present Sheet"
+                    // onPress={handlePresentPress}
+                />
             </View>
-            <ProfileBottomSheet />
+            <ProfileBottomSheet
+                // ref={bottomSheetModalRef}
+            />
         </SafeAreaView>
     );
 };

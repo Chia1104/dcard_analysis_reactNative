@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useRef } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import BottomSheet, { BottomSheetFlatList, BottomSheetBackdrop  } from "@gorhom/bottom-sheet";
 import { Portal, Provider } from 'react-native-paper';
@@ -29,41 +29,48 @@ const ProfileBottomSheet = () => {
         []
     );
 
+    // callbacks
+    const handleSheetChanges = useCallback((index: number) => {
+        console.log('handleSheetChanges', index);
+    }, []);
+
     // renderBackdro
     const renderBackdrop = useCallback(
         props => (
             <BottomSheetBackdrop
                 {...props}
-                disappearsOnIndex={1}
-                appearsOnIndex={2}
+                disappearsOnIndex={-1}
+                appearsOnIndex={1}
             />
         ),
         []
     );
     return (
-        <Provider>
-            <Portal>
-                <View style={styles.container}>
-                    <BottomSheet snapPoints={snapPoints} style={styles.bottomSheetStyle}>
-                        <View style={styles.settingContainerStyle}>
-                            <Text style={styles.settingTextStyle}>
-                                設定
-                            </Text>
-                        </View>
-                        <BottomSheetFlatList
-                            data={data}
-                            keyExtractor={(i) => i}
-                            renderItem={renderItem}
-                            snapPoints={snapPoints}
-                            backdropComponent={renderBackdrop}
-                            contentContainerStyle={styles.contentContainer}
-                            // refreshing={false}
-                            // onRefresh={handleRefresh}
-                        />
-                    </BottomSheet>
+        <Portal style={styles.container}>
+            <BottomSheet
+                snapPoints={snapPoints}
+                style={styles.bottomSheetStyle}
+                enablePanDownToClose={true}
+                index={1}
+                backdropComponent={renderBackdrop}
+                onChange={handleSheetChanges}
+            >
+                <View style={styles.settingContainerStyle}>
+                    <Text style={styles.settingTextStyle}>
+                        設定
+                    </Text>
                 </View>
-            </Portal>
-        </Provider>
+                <BottomSheetFlatList
+                    data={data}
+                    keyExtractor={(i) => i}
+                    renderItem={renderItem}
+                    snapPoints={snapPoints}
+                    contentContainerStyle={styles.contentContainer}
+                    // refreshing={false}
+                    // onRefresh={handleRefresh}
+                />
+            </BottomSheet>
+        </Portal>
     );
 };
 
@@ -71,7 +78,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 24,
-        backgroundColor: 'rgba(33,33,33,0.7)'
     },
     contentContainer: {
         flex: 1,
