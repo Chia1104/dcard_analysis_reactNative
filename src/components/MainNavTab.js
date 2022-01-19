@@ -3,6 +3,7 @@ import {StyleSheet, View, useColorScheme} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import {ToggleButton } from "react-native-paper";
 
@@ -13,8 +14,9 @@ import SearchScreen from "../screens/SearchScreen";
 import ChartScreen from "../screens/ChartScreen";
 import ChatScreen from "../screens/ChatScreen";
 import ProfileScreen from "../screens/ProfileScreen";
+import ChartTopTab from "./ChartTopTab";
 
-const Tab = createMaterialBottomTabNavigator();
+const BottomTab = createMaterialBottomTabNavigator();
 const PostStack = createNativeStackNavigator();
 const HomeStack = createNativeStackNavigator();
 const ChartStack = createNativeStackNavigator();
@@ -36,13 +38,13 @@ const MainNavTab = () => {
 
     return (
         <NavigationContainer>
-            <Tab.Navigator
+            <BottomTab.Navigator
                 initialRouteName="Home"
                 activeColor={themeTextColor}
                 inactiveColor="#AAAAAA"
                 barStyle={themeContainerStyle}
                 screenOptions={{ headerShown: false }}>
-                <Tab.Screen
+                <BottomTab.Screen
                     name="homeTab"
                     options={{
                         tabBarLabel: 'Home',
@@ -68,8 +70,8 @@ const MainNavTab = () => {
                             />
                         </HomeStack.Navigator>
                     )}
-                </Tab.Screen>
-                <Tab.Screen
+                </BottomTab.Screen>
+                <BottomTab.Screen
                     name="postTab"
                     options={{
                         tabBarLabel: 'Post',
@@ -127,8 +129,8 @@ const MainNavTab = () => {
                             }}/>
                         </PostStack.Navigator>
                     )}
-                </Tab.Screen>
-                <Tab.Screen
+                </BottomTab.Screen>
+                <BottomTab.Screen
                     name="chartTab"
                     options={{
                         tabBarLabel: 'Chart',
@@ -140,7 +142,7 @@ const MainNavTab = () => {
                         <ChartStack.Navigator>
                             <ChartStack.Screen
                                 name="chartStack"
-                                component={ChartScreen}
+                                component={ChartTopTab}
                                 options={{
                                     title: 'Chart',
                                     headerStyle: {
@@ -154,8 +156,8 @@ const MainNavTab = () => {
                             />
                         </ChartStack.Navigator>
                     )}
-                </Tab.Screen>
-                <Tab.Screen
+                </BottomTab.Screen>
+                <BottomTab.Screen
                     name="chatTab"
                     options={{
                         tabBarLabel: 'Chat',
@@ -182,8 +184,8 @@ const MainNavTab = () => {
                             />
                         </ChatStack.Navigator>
                     )}
-                </Tab.Screen>
-                <Tab.Screen
+                </BottomTab.Screen>
+                <BottomTab.Screen
                     name="profileTab"
                     options={{
                         tabBarLabel: 'Profile',
@@ -215,8 +217,8 @@ const MainNavTab = () => {
                             />
                         </ProfileStack.Navigator>
                     )}
-                </Tab.Screen>
-            </Tab.Navigator>
+                </BottomTab.Screen>
+            </BottomTab.Navigator>
         </NavigationContainer>
     );
 }
