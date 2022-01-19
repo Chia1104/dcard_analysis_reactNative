@@ -17,16 +17,21 @@ const ProfileBottomSheet = () => {
 
     // renders
     return (
-        <BottomSheet
-            ref={bottomSheetRef}
-            index={1}
-            snapPoints={snapPoints}
-            onChange={handleSheetChanges}
-        >
-            <View style={styles.contentContainer}>
-                <Text>Awesome 🎉</Text>
-            </View>
-        </BottomSheet>
+        //Disable Provider can show full screen BottomSheet
+        <Provider>
+            <Portal>
+                <BottomSheet
+                    ref={bottomSheetRef}
+                    index={1}
+                    snapPoints={snapPoints}
+                    onChange={handleSheetChanges}
+                >
+                    <View style={styles.contentContainer}>
+                        <Text>Awesome 🎉</Text>
+                    </View>
+                </BottomSheet>
+            </Portal>
+        </Provider>
     );
 };
 

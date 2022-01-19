@@ -5,11 +5,9 @@ import MainNavTab from './src/components/MainNavTab'
 
 export default function App() {
   return (
-      <Provider>
-          <Portal>
+          <Portal.Host>
               <MainNavTab />
-          </Portal>
-      </Provider>
+          </Portal.Host>
   );
 }
 
