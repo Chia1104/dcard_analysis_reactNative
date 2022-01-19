@@ -1,11 +1,24 @@
 import React, { useEffect, useState, useCallback } from "react";
-import {ActivityIndicator, SafeAreaView, View, Text, FlatList, StyleSheet, Alert, Button, Linking} from "react-native";
+import {ActivityIndicator, SafeAreaView, View, Text, FlatList, StyleSheet, Alert, Button, Linking, useColorScheme} from "react-native";
 
 const DcardDetailScreen = ({ route }) => {
     const [isLoading, setLoading] = useState(true);
     const [dcardData, setData] = useState([]);
     const {postId} = route.params;
     const articleURL = 'https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/article/' + postId;
+
+    const colorScheme = useColorScheme();
+
+    const themeTextStyle = colorScheme === 'light' ? styles.lightThemeText : styles.darkThemeText;
+    const themeTextColor = colorScheme === 'light' ? "black" : "white";
+    const themeContainerStyle =
+        colorScheme === 'light' ? styles.lightContainer : styles.darkContainer;
+    const themeContainerStyle2 =
+        colorScheme === 'light' ? styles.lightContainer2 : styles.darkContainer2;
+    const themeItemContainerStyle =
+        colorScheme === 'light' ? styles.lightContainer : styles.darkItemContainer;
+    const themeContainerColor = colorScheme === 'light' ? "white" : "black";
+    const themeProgressBarStyle = colorScheme === 'light' ? styles.lightProgressBar : styles.darkProgressBar;
 
     const getDcardDetail = async () => {
         try {
@@ -52,8 +65,8 @@ const DcardDetailScreen = ({ route }) => {
     };
 
     return (
-        <SafeAreaView style={{ flex: 1 }}>
-            {isLoading ? <ActivityIndicator size="large" color="#0000ff" style={styles.progressBarStyle}/> : (
+        <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
+            {isLoading ? <ActivityIndicator size="large" style={[styles.progressBarStyle, themeProgressBarStyle]}/> : (
                 <FlatList
                     data={dcardData}
                     keyExtractor={({ Id }, index) => Id}
@@ -62,35 +75,35 @@ const DcardDetailScreen = ({ route }) => {
                             <View style={{ marginBottom: 25 }}>
                                 <OpenURLButton url={supportedURL}>Open Dcard</OpenURLButton>
                             </View>
-                            <Text style={styles.titleStyle}>
+                            <Text style={[styles.titleStyle, themeTextStyle]}>
                                 {item.Title}
                             </Text>
                             <View style={styles.box1}>
                                 <View style={styles.box2}>
-                                    <Text style={styles.detailsStyle}>
+                                    <Text style={[styles.detailsStyle, themeTextStyle]}>
                                         {item.SA_Class}
                                     </Text>
-                                    <Text style={styles.detailsStyle}>
+                                    <Text style={[styles.detailsStyle, themeTextStyle]}>
                                         ({item.SA_Score})
                                     </Text>
                                 </View>
 
-                                <Text style={styles.dateStyle}>
+                                <Text style={[styles.dateStyle]}>
                                     {item.CreatedAt}
                                 </Text>
                             </View>
                             <View style={styles.box1}>
-                                <Text style={styles.detailsStyle}>
+                                <Text style={[styles.detailsStyle]}>
                                     {item.KeywordLevel1}
                                 </Text>
-                                <Text style={styles.detailsStyle}>
+                                <Text style={[styles.detailsStyle]}>
                                     {item.KeywordLevel2}
                                 </Text>
-                                <Text style={styles.detailsStyle}>
+                                <Text style={[styles.detailsStyle]}>
                                     {item.KeywordLevel3}
                                 </Text>
                             </View>
-                            <Text style={styles.contentStyle}>
+                            <Text style={[styles.contentStyle, themeTextStyle]}>
                                 {item.Content}
                             </Text>
                         </View>
@@ -102,6 +115,12 @@ const DcardDetailScreen = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
+    lightProgressBar: {
+        color: "black"
+    },
+    darkProgressBar: {
+        color: "white"
+    },
     progressBarStyle: {
         flex: 1,
         justifyContent: "center"
@@ -136,7 +155,28 @@ const styles = StyleSheet.create({
         marginBottom: 7,
         lineHeight: 25,
         color: "#666666"
-    }
+    },
+    lightContainer: {
+        backgroundColor: 'white',
+    },
+    darkContainer: {
+        backgroundColor: 'black',
+    },
+    lightContainer2: {
+        backgroundColor: '#F5F5F5',
+    },
+    darkContainer2: {
+        backgroundColor: '#1f1f1f',
+    },
+    darkItemContainer: {
+        backgroundColor: '#262626',
+    },
+    lightThemeText: {
+        color: 'black',
+    },
+    darkThemeText: {
+        color: 'white',
+    },
 });
 
 export default DcardDetailScreen;

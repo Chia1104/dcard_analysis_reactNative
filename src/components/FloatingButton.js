@@ -14,6 +14,9 @@ const FloatingButton = () => {
             <Portal>
                 <FAB.Group
                     open={open}
+                    fabStyle={{
+                        backgroundColor: 'powderblue'
+                    }}
                     icon={open ? 'bookmark-off-outline' : 'bookmark-plus-outline'}
                     actions={[
                         { icon: 'bookmark-plus-outline', onPress: () => console.log('Pressed add') },

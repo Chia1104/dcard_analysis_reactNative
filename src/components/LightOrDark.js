@@ -1,7 +1,7 @@
 import React from "react";
-import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme } from "react-native";
+import {StyleSheet, useColorScheme} from "react-native";
 
-const ChartScreen = () => {
+const LightOrDark = () => {
 
     const colorScheme = useColorScheme();
 
@@ -15,22 +15,16 @@ const ChartScreen = () => {
         colorScheme === 'light' ? styles.lightContainer : styles.darkItemContainer;
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
 
-    return (
-        <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
-            <View style={styles.container}>
-                <Text style={[themeTextStyle]}>
-                    Chart
-                </Text>
-            </View>
-        </SafeAreaView>
-    );
+    const themeProgressBarStyle = colorScheme === 'light' ? styles.lightProgressBar : styles.darkProgressBar;
+
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center"
+    lightProgressBar: {
+        color: "black"
+    },
+    darkProgressBar: {
+        color: "white"
     },
     lightContainer: {
         backgroundColor: 'white',
@@ -42,10 +36,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#F5F5F5',
     },
     darkContainer2: {
-        backgroundColor: '#1f1f1f',
+        backgroundColor: '#262626',
     },
     darkItemContainer: {
-        backgroundColor: '#262626',
+        backgroundColor: '#474747',
     },
     lightThemeText: {
         color: 'black',
@@ -55,4 +49,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ChartScreen;
+export default LightOrDark;

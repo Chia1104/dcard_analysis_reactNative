@@ -1,8 +1,10 @@
 import React from "react";
-import { SafeAreaView, FlatList, View, Text, StyleSheet } from "react-native";
+import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme } from "react-native";
 import {VictoryPie, VictoryChart, VictoryTheme} from "victory-native";
 
 const HomePieChart = () => {
+    const colorScheme = useColorScheme();
+    const themeTextColor = colorScheme === 'light' ? "black" : "white";
     return (
         <VictoryPie
             data={[
@@ -16,6 +18,7 @@ const HomePieChart = () => {
             // }}
             labels={({ datum }) => datum.y}
             innerRadius={100}
+            style={{ labels: { fill: themeTextColor, fontSize: 20, fontWeight: "bold" } }}
         />
     );
 };

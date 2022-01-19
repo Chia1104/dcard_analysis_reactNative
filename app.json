@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "dcard_analysis_reactNative",
+    "name": "CGU動態查詢系統",
     "slug": "dcard_analysis_reactNative",
-    "version": "1.0.0",
+    "version": "BETA 2.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -28,6 +28,7 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
+    "userInterfaceStyle": "automatic",
     "description": "CGU Dcard Analysis",
     "githubUrl": "https://github.com/Chia1104/dcard_analysis_reactNative"
   }

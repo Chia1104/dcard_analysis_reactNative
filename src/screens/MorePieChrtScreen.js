@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme } from "react-native";
 
-const ChartScreen = () => {
+const MorePieChartScreen = () => {
 
     const colorScheme = useColorScheme();
 
@@ -19,7 +19,7 @@ const ChartScreen = () => {
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
             <View style={styles.container}>
                 <Text style={[themeTextStyle]}>
-                    Chart
+                    MorePieChartScreen
                 </Text>
             </View>
         </SafeAreaView>
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default ChartScreen;
+export default MorePieChartScreen;
