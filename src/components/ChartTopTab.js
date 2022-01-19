@@ -17,6 +17,9 @@ const ChartTopTab = () => {
                 // },
                 tabBarStyle: {
                     backgroundColor: 'powderblue',
+                    // borderRadius: 50,
+                    // marginRight: 5,
+                    // marginLeft: 5,
                 },
             }}
         >

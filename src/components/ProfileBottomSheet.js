@@ -1,6 +1,7 @@
 import React, { useCallback, useMemo, useRef } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import BottomSheet from '@gorhom/bottom-sheet';
+import { Portal, Provider } from 'react-native-paper';
 
 const ProfileBottomSheet = () => {
     // ref
@@ -16,18 +17,16 @@ const ProfileBottomSheet = () => {
 
     // renders
     return (
-        <View style={styles.container}>
-            <BottomSheet
-                ref={bottomSheetRef}
-                index={1}
-                snapPoints={snapPoints}
-                onChange={handleSheetChanges}
-            >
-                <View style={styles.contentContainer}>
-                    <Text>Awesome 🎉</Text>
-                </View>
-            </BottomSheet>
-        </View>
+        <BottomSheet
+            ref={bottomSheetRef}
+            index={1}
+            snapPoints={snapPoints}
+            onChange={handleSheetChanges}
+        >
+            <View style={styles.contentContainer}>
+                <Text>Awesome 🎉</Text>
+            </View>
+        </BottomSheet>
     );
 };
 
@@ -35,7 +34,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 24,
-        backgroundColor: 'grey',
+        zIndex: 1,
     },
     contentContainer: {
         flex: 1,
