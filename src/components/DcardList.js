@@ -13,6 +13,7 @@ const DcardList = ({ dcard }) => {
     const themeItemContainerStyle =
         colorScheme === 'light' ? styles.lightContainer : styles.darkItemContainer;
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
+    const themeProgressBarStyle = colorScheme === 'light' ? styles.lightProgressBar : styles.darkProgressBar;
     return (
         <View style={[styles.cardContainerStyle, themeItemContainerStyle]}>
             <View style={styles.box1}>
@@ -32,7 +33,7 @@ const DcardList = ({ dcard }) => {
                         ({dcard.SA_Score})
                     </Text>
                 </View>
-                <Text style={[styles.dateStyle, themeTextStyle]}>
+                <Text style={[styles.dateStyle]}>
                     {dcard.CreatedAt}
                 </Text>
             </View>
@@ -41,6 +42,12 @@ const DcardList = ({ dcard }) => {
 };
 
 const styles = StyleSheet.create({
+    lightProgressBar: {
+        color: "black"
+    },
+    darkProgressBar: {
+        color: "white"
+    },
     cardContainerStyle: {
         justifyContent: "space-between",
         alignItems: "flex-start",

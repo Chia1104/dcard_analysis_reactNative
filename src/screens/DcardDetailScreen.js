@@ -18,6 +18,7 @@ const DcardDetailScreen = ({ route }) => {
     const themeItemContainerStyle =
         colorScheme === 'light' ? styles.lightContainer : styles.darkItemContainer;
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
+    const themeProgressBarStyle = colorScheme === 'light' ? styles.lightProgressBar : styles.darkProgressBar;
 
     const getDcardDetail = async () => {
         try {
@@ -65,7 +66,7 @@ const DcardDetailScreen = ({ route }) => {
 
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
-            {isLoading ? <ActivityIndicator size="large" color="#0000ff" style={styles.progressBarStyle}/> : (
+            {isLoading ? <ActivityIndicator size="large" style={[styles.progressBarStyle, themeProgressBarStyle]}/> : (
                 <FlatList
                     data={dcardData}
                     keyExtractor={({ Id }, index) => Id}
@@ -87,18 +88,18 @@ const DcardDetailScreen = ({ route }) => {
                                     </Text>
                                 </View>
 
-                                <Text style={[styles.dateStyle, themeTextStyle]}>
+                                <Text style={[styles.dateStyle]}>
                                     {item.CreatedAt}
                                 </Text>
                             </View>
                             <View style={styles.box1}>
-                                <Text style={[styles.detailsStyle, themeTextStyle]}>
+                                <Text style={[styles.detailsStyle]}>
                                     {item.KeywordLevel1}
                                 </Text>
-                                <Text style={[styles.detailsStyle, themeTextStyle]}>
+                                <Text style={[styles.detailsStyle]}>
                                     {item.KeywordLevel2}
                                 </Text>
-                                <Text style={[styles.detailsStyle, themeTextStyle]}>
+                                <Text style={[styles.detailsStyle]}>
                                     {item.KeywordLevel3}
                                 </Text>
                             </View>
@@ -114,6 +115,12 @@ const DcardDetailScreen = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
+    lightProgressBar: {
+        color: "black"
+    },
+    darkProgressBar: {
+        color: "white"
+    },
     progressBarStyle: {
         flex: 1,
         justifyContent: "center"

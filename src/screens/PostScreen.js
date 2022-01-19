@@ -20,6 +20,7 @@ const PostScreen = ({ navigation }) => {
     const themeItemContainerStyle =
         colorScheme === 'light' ? styles.lightContainer : styles.darkItemContainer;
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
+    const themeProgressBarStyle = colorScheme === 'light' ? styles.lightProgressBar : styles.darkProgressBar;
 
     const getDcards = async () => {
         try {
@@ -69,7 +70,7 @@ const PostScreen = ({ navigation }) => {
 
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
-            {isLoading ? <ActivityIndicator size="large" color="#0000ff" style={styles.progressBarStyle}/> : (
+            {isLoading ? <ActivityIndicator size="large" style={[styles.progressBarStyle, themeProgressBarStyle]}/> : (
                 <FlatList
                     data={dcardData}
                     renderItem={({ item }) =>
@@ -94,6 +95,12 @@ const PostScreen = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
+    lightProgressBar: {
+        color: "black"
+    },
+    darkProgressBar: {
+        color: "white"
+    },
     progressBarStyle: {
         flex: 1,
         justifyContent: "center"

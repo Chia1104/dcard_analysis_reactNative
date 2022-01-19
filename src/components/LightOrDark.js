@@ -15,9 +15,17 @@ const LightOrDark = () => {
         colorScheme === 'light' ? styles.lightContainer : styles.darkItemContainer;
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
 
+    const themeProgressBarStyle = colorScheme === 'light' ? styles.lightProgressBar : styles.darkProgressBar;
+
 };
 
 const styles = StyleSheet.create({
+    lightProgressBar: {
+        color: "black"
+    },
+    darkProgressBar: {
+        color: "white"
+    },
     lightContainer: {
         backgroundColor: 'white',
     },

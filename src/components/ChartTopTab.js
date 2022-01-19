@@ -12,12 +12,16 @@ const ChartTopTab = () => {
         <TopTab.Navigator
             screenOptions={{
                 tabBarLabelStyle: { fontSize: 12 },
-                tabBarItemStyle: { width: 100 },
-                tabBarStyle: { backgroundColor: 'powderblue' },
+                // tabBarItemStyle: {
+                //     width: 100,
+                // },
+                tabBarStyle: {
+                    backgroundColor: 'powderblue',
+                },
             }}
         >
-            <TopTab.Screen name="PieChart" component={MorePieChartScreen} />
-            <TopTab.Screen name="BLChart" component={MoreBLChartScreen} />
+            <TopTab.Screen name="PieChart" component={MorePieChartScreen} options={{ tabBarLabel: '情緒總量' }}/>
+            <TopTab.Screen name="BLChart" component={MoreBLChartScreen} options={{ tabBarLabel: '情緒趨勢' }}/>
         </TopTab.Navigator>
     );
 }
