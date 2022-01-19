@@ -1,6 +1,8 @@
 import React from "react";
 import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme } from "react-native";
 
+import ProfileBottomSheet from "../components/ProfileBottomSheet";
+
 const ProfileScreen = () => {
 
     const colorScheme = useColorScheme();
@@ -22,6 +24,7 @@ const ProfileScreen = () => {
                     Profile
                 </Text>
             </View>
+            <ProfileBottomSheet />
         </SafeAreaView>
     );
 };
