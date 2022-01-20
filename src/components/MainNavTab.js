@@ -86,7 +86,7 @@ const MainNavTab = () => {
                                 ({navigation}) => ({
                                     headerRight: () =>
                                         <IconButton
-                                            onPress={() => navigation.navigate('searchStack')}
+                                            onPress={() => navigation.push('searchStack')}
                                             color={themeTextColor}
                                             icon="magnify"
                                         />,
@@ -200,7 +200,7 @@ const MainNavTab = () => {
                                     ({navigation}) => ({
                                         headerRight: () =>
                                             <IconButton
-                                                onPress={() => navigation.navigate('searchStack')}
+                                                onPress={() => navigation.push('searchStack')}
                                                 color={themeTextColor}
                                                 icon="cog-outline"
                                             />,

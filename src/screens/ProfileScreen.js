@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useCallback, useMemo, useRef } from "react";
 import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme, Button } from "react-native";
+import { Modal } from 'react-native-paper';
 
 import ProfileBottomSheet from "../components/ProfileBottomSheet";
 
@@ -20,6 +21,10 @@ const ProfileScreen = () => {
     const bottomSheetModalRef = useRef(1);
     const handlePresentPress = () => bottomSheetModalRef.current.present()
 
+    const [visible, setVisible] = React.useState(false);
+    const showModal = () => setVisible(true);
+    const hideModal = () => setVisible(false);
+
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
             <View style={styles.container}>
@@ -28,12 +33,14 @@ const ProfileScreen = () => {
                 </Text>
                 <Button
                     title="Present Sheet"
-                    // onPress={handlePresentPress}
+                    onPress={showModal}
                 />
             </View>
+            <Modal visible={visible} onDismiss={hideModal}>
             <ProfileBottomSheet
                 // ref={bottomSheetModalRef}
             />
+            </Modal>
         </SafeAreaView>
     );
 };

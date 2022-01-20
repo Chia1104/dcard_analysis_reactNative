@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback} from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { ActivityIndicator, SafeAreaView, FlatList, TouchableOpacity, RefreshControl, Text, StyleSheet , useColorScheme} from "react-native";
 import DcardList from "../components/DcardList";
 import FloatingButton from "../components/FloatingButton";
@@ -74,7 +74,7 @@ const PostScreen = ({ navigation }) => {
                 <FlatList
                     data={dcardData}
                     renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => navigation.navigate('detailStack', {
+                        <TouchableOpacity onPress={() => navigation.push('detailStack', {
                             postId: item.Id})}>
                             <DcardList
                                 dcard={item}

@@ -25,6 +25,7 @@ const SearchScreen = () => {
                 placeholder="Search"
                 onChangeText={onChangeSearch}
                 value={searchQuery}
+                // style={themeContainerStyle}
             />
         </SafeAreaView>
     );
