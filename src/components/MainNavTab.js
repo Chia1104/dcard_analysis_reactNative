@@ -3,7 +3,6 @@ import {StyleSheet, View, useColorScheme} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import {IconButton } from "react-native-paper";
 
@@ -11,11 +10,9 @@ import HomeScreen from "../screens/HomeScreen";
 import PostScreen from "../screens/PostScreen";
 import DcardDetailScreen from "../screens/DcardDetailScreen";
 import SearchScreen from "../screens/SearchScreen";
-import ChartScreen from "../screens/ChartScreen";
 import ChatScreen from "../screens/ChatScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ChartTopTab from "./ChartTopTab";
-import ProfileBottomSheet from "./ProfileBottomSheet";
 
 const BottomTab = createMaterialBottomTabNavigator();
 const PostStack = createNativeStackNavigator();
