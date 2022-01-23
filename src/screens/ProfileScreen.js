@@ -18,9 +18,6 @@ const ProfileScreen = () => {
         colorScheme === 'light' ? styles.lightContainer : styles.darkItemContainer;
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
 
-    const bottomSheetModalRef = useRef(1);
-    const handlePresentPress = () => bottomSheetModalRef.current.present()
-
     const [visible, setVisible] = React.useState(false);
     const showModal = () => setVisible(true);
     const hideModal = () => setVisible(false);
@@ -37,9 +34,7 @@ const ProfileScreen = () => {
                 />
             </View>
             <Modal visible={visible} onDismiss={hideModal}>
-            <ProfileBottomSheet
-                // ref={bottomSheetModalRef}
-            />
+                <ProfileBottomSheet />
             </Modal>
         </SafeAreaView>
     );

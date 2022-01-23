@@ -12,7 +12,7 @@ const ProfileBottomSheet = () => {
                 .map((_, index) => `index-${index}`),
         []
     );
-    const snapPoints = useMemo(() => ["8%", "55%"], []);
+    const snapPoints = useMemo(() => ["55%", "55%"], []);
 
     // handleRefresh
     const handleRefresh = useCallback(() => {
@@ -54,6 +54,7 @@ const ProfileBottomSheet = () => {
                 index={1}
                 backdropComponent={renderBackdrop}
                 onChange={handleSheetChanges}
+                animateOnMount={true}
             >
                 <View style={styles.settingContainerStyle}>
                     <Text style={styles.settingTextStyle}>
