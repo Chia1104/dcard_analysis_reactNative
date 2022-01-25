@@ -64,6 +64,8 @@ const MainNavTab = () => {
                                     headerTitleStyle: {
                                         fontWeight: 'bold',
                                     },
+                                    headerTransparent: 'true',
+                                    headerTitleAlign: 'center',
                                 }}
                             />
                         </HomeStack.Navigator>
@@ -98,6 +100,8 @@ const MainNavTab = () => {
                                     headerTitleStyle: {
                                         fontWeight: 'bold',
                                     },
+                                    headerTransparent: 'true',
+                                    headerTitleAlign: 'center',
                                 })}
                             />
                             <PostStack.Screen
@@ -112,6 +116,8 @@ const MainNavTab = () => {
                                     headerTitleStyle: {
                                         fontWeight: 'bold',
                                     },
+                                    headerTransparent: 'true',
+                                    headerTitleAlign: 'center',
                                 }}/>
                             <PostStack.Screen
                                 name="searchStack"
@@ -124,6 +130,8 @@ const MainNavTab = () => {
                                 headerTitleStyle: {
                                     fontWeight: 'bold',
                                 },
+                                headerTransparent: 'true',
+                                headerTitleAlign: 'center',
                             }}/>
                         </PostStack.Navigator>
                     )}
@@ -150,6 +158,8 @@ const MainNavTab = () => {
                                     headerTitleStyle: {
                                         fontWeight: 'bold',
                                     },
+                                    headerTransparent: 'true',
+                                    headerTitleAlign: 'center',
                                 }}
                             />
                         </ChartStack.Navigator>
@@ -178,6 +188,8 @@ const MainNavTab = () => {
                                     headerTitleStyle: {
                                         fontWeight: 'bold',
                                     },
+                                    headerTransparent: 'true',
+                                    headerTitleAlign: 'center',
                                 }}
                             />
                         </ChatStack.Navigator>
@@ -212,6 +224,9 @@ const MainNavTab = () => {
                                         headerTitleStyle: {
                                             fontWeight: 'bold',
                                         },
+                                        headerTransparent: 'true',
+                                        headerTitleAlign: 'center',
+                                        headerBlurEffect: 'regular',
                                     })}
                             />
                             <PostStack.Screen
@@ -225,6 +240,8 @@ const MainNavTab = () => {
                                 headerTitleStyle: {
                                     fontWeight: 'bold',
                                 },
+                                headerTransparent: 'true',
+                                headerTitleAlign: 'center',
                             }}/>
                         </ProfileStack.Navigator>
                     )}

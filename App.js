@@ -1,6 +1,6 @@
 import React from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Portal, Provider } from 'react-native-paper';
+import { Portal } from 'react-native-paper';
 import MainNavTab from './src/components/MainNavTab'
 
 export default function App() {
