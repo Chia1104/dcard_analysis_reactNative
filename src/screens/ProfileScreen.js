@@ -28,14 +28,14 @@ const ProfileScreen = () => {
                 <Text style={[themeTextStyle]}>
                     Profile
                 </Text>
-                <Button
-                    title="Present Sheet"
-                    onPress={showModal}
-                />
+                {/*<Button*/}
+                {/*    title="Present Sheet"*/}
+                {/*    onPress={showModal}*/}
+                {/*/>*/}
             </View>
-            <Modal visible={visible} onDismiss={hideModal}>
+            {/*<Modal visible={visible} onDismiss={hideModal}>*/}
                 <ProfileBottomSheet />
-            </Modal>
+            {/*</Modal>*/}
         </SafeAreaView>
     );
 };

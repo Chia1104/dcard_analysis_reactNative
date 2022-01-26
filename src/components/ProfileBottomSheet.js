@@ -1,9 +1,12 @@
 import React, { useCallback, useMemo, useRef } from "react";
 import { StyleSheet, View, Text } from "react-native";
-import BottomSheet, { BottomSheetFlatList, BottomSheetBackdrop  } from "@gorhom/bottom-sheet";
+import BottomSheet, { BottomSheetFlatList, BottomSheetBackdrop, BottomSheetModal, BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { Portal, Provider } from 'react-native-paper';
+import {useDispatch, useSelector} from "react-redux";
+import {unexpandBottomSheet} from "../redux/actions/BottomSheetAction";
 
 const ProfileBottomSheet = () => {
+    const dispatch = useDispatch();
     // data
     const data = useMemo(
         () =>
@@ -32,6 +35,9 @@ const ProfileBottomSheet = () => {
     // callbacks
     const handleSheetChanges = useCallback((index: number) => {
         console.log('handleSheetChanges', index);
+        if (index === -1){
+            dispatch(unexpandBottomSheet);
+        }
     }, []);
 
     // renderBackdro
@@ -45,32 +51,47 @@ const ProfileBottomSheet = () => {
         ),
         []
     );
+
+    // ref
+    const bottomSheetModalRef = useRef(null);
+    // callbacks
+    const showModal = useCallback(() => {
+        bottomSheetModalRef.current?.present();
+    }, []);
+    const expanded = useSelector((state) => state.bottomSheet.expanded);
+    if (expanded === true) {
+        showModal();
+    }
+
     return (
         <Portal style={styles.container}>
-            <BottomSheet
-                snapPoints={snapPoints}
-                style={styles.bottomSheetStyle}
-                enablePanDownToClose={true}
-                index={1}
-                backdropComponent={renderBackdrop}
-                onChange={handleSheetChanges}
-                animateOnMount={true}
-            >
-                <View style={styles.settingContainerStyle}>
-                    <Text style={styles.settingTextStyle}>
-                        設定
-                    </Text>
-                </View>
-                <BottomSheetFlatList
-                    data={data}
-                    keyExtractor={(i) => i}
-                    renderItem={renderItem}
+            <BottomSheetModalProvider>
+                <BottomSheetModal
+                    ref={bottomSheetModalRef}
                     snapPoints={snapPoints}
-                    contentContainerStyle={styles.contentContainer}
-                    // refreshing={false}
-                    // onRefresh={handleRefresh}
-                />
-            </BottomSheet>
+                    style={styles.bottomSheetStyle}
+                    enablePanDownToClose={true}
+                    index={1}
+                    backdropComponent={renderBackdrop}
+                    onChange={handleSheetChanges}
+                    animateOnMount={true}
+                >
+                    <View style={styles.settingContainerStyle}>
+                        <Text style={styles.settingTextStyle}>
+                            設定
+                        </Text>
+                    </View>
+                    <BottomSheetFlatList
+                        data={data}
+                        keyExtractor={(i) => i}
+                        renderItem={renderItem}
+                        snapPoints={snapPoints}
+                        contentContainerStyle={styles.contentContainer}
+                        // refreshing={false}
+                        // onRefresh={handleRefresh}
+                    />
+                </BottomSheetModal>
+            </BottomSheetModalProvider>
         </Portal>
     );
 };

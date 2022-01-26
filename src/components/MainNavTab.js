@@ -13,6 +13,8 @@ import SearchScreen from "../screens/SearchScreen";
 import ChatScreen from "../screens/ChatScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ChartTopTab from "./ChartTopTab";
+import {useDispatch, useSelector} from "react-redux";
+import {expandBottomSheet} from "../redux/actions/BottomSheetAction";
 
 const BottomTab = createMaterialBottomTabNavigator();
 const PostStack = createNativeStackNavigator();
@@ -23,6 +25,7 @@ const ProfileStack = createNativeStackNavigator();
 
 const MainNavTab = () => {
     const colorScheme = useColorScheme();
+    const dispatch = useDispatch();
 
     const themeTextStyle = colorScheme === 'light' ? styles.lightThemeText : styles.darkThemeText;
     const themeTextColor = colorScheme === 'light' ? "black" : "white";
@@ -209,10 +212,12 @@ const MainNavTab = () => {
                                 name="profileStack"
                                 component={ProfileScreen}
                                 options={
-                                    ({navigation}) => ({
+                                    () => ({
                                         headerRight: () =>
                                             <IconButton
-                                                onPress={() => navigation.push('searchStack')}
+                                                onPress={() => {
+                                                    dispatch(expandBottomSheet);
+                                                }}
                                                 color={themeTextColor}
                                                 icon="cog-outline"
                                             />,
@@ -226,23 +231,8 @@ const MainNavTab = () => {
                                         },
                                         headerTransparent: 'true',
                                         headerTitleAlign: 'center',
-                                        headerBlurEffect: 'regular',
                                     })}
                             />
-                            <PostStack.Screen
-                                name="searchStack"
-                                component={SearchScreen} options={{
-                                title: 'Search',
-                                headerStyle: {
-                                    backgroundColor: {themeContainerColor}
-                                },
-                                headerTintColor: {themeTextColor},
-                                headerTitleStyle: {
-                                    fontWeight: 'bold',
-                                },
-                                headerTransparent: 'true',
-                                headerTitleAlign: 'center',
-                            }}/>
                         </ProfileStack.Navigator>
                     )}
                 </BottomTab.Screen>
