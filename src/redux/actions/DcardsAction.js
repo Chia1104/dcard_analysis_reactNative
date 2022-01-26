@@ -1,5 +1,6 @@
 import {
     SET_DCARD_DETAIL,
+    SET_DCARDS_LIST,
     BEGIN_DCARDS_REQUEST,
     SUCCESS_DCARDS_REQUEST,
     FAIL_DCARDS_REQUEST,
@@ -13,55 +14,42 @@ import {
     getTodayDcards,
     getMonthDcards,
     getWeekDcards,
-} from "../../api/index";
+} from "../../api/api";
 
 
 export const setDcardDetail = (id) => async (dispatch) => {
     dispatch({ type: BEGIN_DCARDS_REQUEST });
     try {
-        const dcard = await getDcardsById(id);
-        if (qty === 0)
-            dispatch({
-                type: SET_PRODUCT_DETAIL,
-                payload: {
-                    product,
-                },
-            });
-        else
-            dispatch({
-                type: SET_PRODUCT_DETAIL,
-                payload: {
-                    product,
-                    qty,
-                },
-            });
-        dispatch({ type: SUCCESS_PRODUCTS_REQUEST });
+        const dcardDetail = await getDcardsById(id);
+        dispatch({
+            type: SET_DCARD_DETAIL,
+            payload: {
+                dcardDetail,
+            },
+        });
     } catch (error) {
         console.log(error);
-        dispatch({ type: FAIL_PRODUCTS_REQUEST, payload: error });
+        dispatch({ type: SUCCESS_DCARDS_REQUEST, payload: error });
+    } finally {
+        dispatch({ type: SUCCESS_DCARDS_REQUEST });
     }
 };
 
-export const setPage = (url, title) => async (dispatch) => {
-    let products = [];
-    dispatch({ type: BEGIN_PRODUCTS_REQUEST });
-    dispatch({
-        type: SET_PAGE_TITLE,
-        payload: title,
-    });
+export const setDcardsList = (limit) => async (dispatch) => {
+    let allDcards = [];
+    dispatch({ type: BEGIN_DCARDS_REQUEST });
     try {
-        products = await getProducts(url);
+        allDcards = await getAllDcards(limit);
         dispatch({
-            type: SET_PAGE_CONTENT,
-            payload: { title, products },
+            type: SET_DCARDS_LIST,
+            payload: {
+                allDcards,
+            },
         });
-        dispatch({
-            type: SET_NAVBAR_ACTIVEITEM,
-            payload: url,
-        });
-        dispatch({ type: SUCCESS_PRODUCTS_REQUEST });
     } catch (error) {
         console.log(error);
-        dispatch({ type: FAIL_PRODUCTS_REQUEST, payload: error });
+        dispatch({ type: FAIL_DCARDS_REQUEST, payload: error });
+    } finally {
+        dispatch({ type: SUCCESS_DCARDS_REQUEST });
     }
 };

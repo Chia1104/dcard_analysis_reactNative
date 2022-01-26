@@ -1,5 +1,6 @@
 import {
     SET_DCARD_DETAIL,
+    SET_DCARDS_LIST,
     BEGIN_DCARDS_REQUEST,
     SUCCESS_DCARDS_REQUEST,
     FAIL_DCARDS_REQUEST,
@@ -8,12 +9,7 @@ import {
 export const dcardsReducer = (
     state = {
         allDcards: [],
-        screen: {
-            dcards: [],
-        },
-        dcardDetail: {
-            dcard: [],
-        },
+        dcardDetail: [],
         requestDcards: {
             loading: false,
             error: null,
@@ -22,6 +18,11 @@ export const dcardsReducer = (
     action
 ) => {
     switch (action.type) {
+        case SET_DCARDS_LIST:
+            return {
+                ...state,
+                allDcards: { ...state.allDcards, ...action.payload },
+            };
         case SET_DCARD_DETAIL:
             return {
                 ...state,
