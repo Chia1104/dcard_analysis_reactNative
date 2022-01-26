@@ -2,7 +2,8 @@ import React, { useEffect, useState, useCallback } from "react";
 import { ActivityIndicator, SafeAreaView, FlatList, TouchableOpacity, RefreshControl, Text, StyleSheet , useColorScheme} from "react-native";
 import DcardList from "../components/DcardList";
 import FloatingButton from "../components/FloatingButton";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {setDcardsList} from "../redux/actions/DcardsAction";
 
 const PostScreen = ({ navigation }) => {
 
@@ -23,7 +24,11 @@ const PostScreen = ({ navigation }) => {
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
     const themeProgressBarStyle = colorScheme === 'light' ? styles.lightProgressBar : styles.darkProgressBar;
 
-    const { allDcards } = useSelector((state) => state.allDcards);
+    const { dcards } = useSelector((state) => state.dcards.allDcards);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(setDcardsList(30));
+    }, [])
 
     const getDcards = async () => {
         try {
