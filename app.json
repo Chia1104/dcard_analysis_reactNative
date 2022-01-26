@@ -4,9 +4,9 @@
     "slug": "dcard_analysis_reactNative",
     "version": "BETA 2.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/CGUDcardAnalysisIcon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/CGUDcardAnalysisSplash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -21,12 +21,12 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/CGUDcardAnalysisIcon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/CGUDcardAnalysisIcon.png"
     },
     "userInterfaceStyle": "automatic",
     "description": "CGU Dcard Analysis",
