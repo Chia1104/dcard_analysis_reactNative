@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
-import { ActivityIndicator, SafeAreaView, FlatList, TouchableOpacity, RefreshControl, Text, StyleSheet , useColorScheme} from "react-native";
+import { ActivityIndicator, SafeAreaView, FlatList, TouchableOpacity, RefreshControl, Text, StyleSheet , useColorScheme, View, ScrollView} from "react-native";
 import DcardList from "../components/DcardList";
 import FloatingButton from "../components/FloatingButton";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,8 +7,6 @@ import {setDcardsList} from "../redux/actions/DcardsAction";
 
 const PostScreen = ({ navigation }) => {
 
-    const [isLoading, setLoading] = useState(true);
-    const [dcardData, setData] = useState([]);
     const [moreData, setMoreData] = useState([]);
 
     const colorScheme = useColorScheme();
@@ -24,32 +22,11 @@ const PostScreen = ({ navigation }) => {
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
     const themeProgressBarStyle = colorScheme === 'light' ? styles.lightProgressBar : styles.darkProgressBar;
 
-    const { dcards } = useSelector((state) => state.dcards.allDcards);
+    const allDcards = useSelector((state) => state.dcards.allDcards);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setDcardsList(30));
     }, [])
-
-    const getDcards = async () => {
-        try {
-            const response = await fetch('https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/getAllDcard/30', {
-                method: 'GET',
-                credentials: 'omit',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-                }
-            });
-            const jsonRawData = await response.json();
-            setData(jsonRawData);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    }
 
     const getMoreDcards = useCallback(async () => {
         try {
@@ -72,31 +49,40 @@ const PostScreen = ({ navigation }) => {
         }
     }, [moreData]);
 
-    useEffect(() => {
-        getDcards();
-    }, []);
-
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
-            {isLoading ? <ActivityIndicator size="large" style={[styles.progressBarStyle, themeProgressBarStyle]}/> : (
-                <FlatList
-                    data={dcardData}
-                    renderItem={({ item }) =>
-                        <TouchableOpacity onPress={() => navigation.push('detailStack', {
-                            postId: item.Id})}>
-                            <DcardList
-                                dcard={item}
-                                navigation={navigation}
-                            />
-                        </TouchableOpacity>
-                    }
-                    keyExtractor={item => item.Id}
-                    onEndReached={getMoreDcards}
-                    onEndReachedThreshold={0.9}
-                    extraData={moreData}
+            <ScrollView>
+                {allDcards.length === 0 ? (
+                    <ActivityIndicator
+                        size="large"
+                        style={[styles.progressBarStyle, themeProgressBarStyle]}
+                    />
+                ) : (
+                    <FlatList
+                        data={allDcards}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity
+                                onPress={() =>
+                                    navigation.push("detailStack", {
+                                        postId: item.Id,
+                                    })
+                                }
+                            >
+                                <DcardList dcard={item} navigation={navigation} />
+                            </TouchableOpacity>
+                        )}
+                        keyExtractor={(item) => item.Id}
+                        onEndReached={getMoreDcards}
+                        onEndReachedThreshold={0.9}
+                        extraData={moreData}
+                    />
+                )}
+                <ActivityIndicator
+                    size="large"
+                    style={[styles.progressBarStyle, themeProgressBarStyle]}
                 />
-            )}
-            <FloatingButton/>
+            </ScrollView>
+            <FloatingButton />
         </SafeAreaView>
     );
 

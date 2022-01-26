@@ -9,7 +9,7 @@ import {
 export const dcardsReducer = (
     state = {
         allDcards: [],
-        dcardDetail: [],
+        dcardDetail: null,
         requestDcards: {
             loading: false,
             error: null,
@@ -21,12 +21,12 @@ export const dcardsReducer = (
         case SET_DCARDS_LIST:
             return {
                 ...state,
-                allDcards: { ...state.allDcards, ...action.payload },
+                allDcards: action.payload,
             };
         case SET_DCARD_DETAIL:
             return {
                 ...state,
-                dcardDetail: { ...state.dcardDetail, ...action.payload },
+                dcardDetail: action.payload,
             };
         case BEGIN_DCARDS_REQUEST:
             return {

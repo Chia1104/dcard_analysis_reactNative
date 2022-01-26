@@ -23,13 +23,11 @@ export const setDcardDetail = (id) => async (dispatch) => {
         const dcardDetail = await getDcardsById(id);
         dispatch({
             type: SET_DCARD_DETAIL,
-            payload: {
-                dcardDetail,
-            },
+            payload: dcardDetail,
         });
     } catch (error) {
         console.log(error);
-        dispatch({ type: SUCCESS_DCARDS_REQUEST, payload: error });
+        dispatch({ type: FAIL_DCARDS_REQUEST, payload: error });
     } finally {
         dispatch({ type: SUCCESS_DCARDS_REQUEST });
     }
@@ -42,9 +40,7 @@ export const setDcardsList = (limit) => async (dispatch) => {
         allDcards = await getAllDcards(limit);
         dispatch({
             type: SET_DCARDS_LIST,
-            payload: {
-                allDcards,
-            },
+            payload: allDcards,
         });
     } catch (error) {
         console.log(error);

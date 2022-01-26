@@ -1,6 +1,5 @@
-
-
 const URL = "https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api";
+const URL_BACKUP = "https://fathomless-fjord-03751.herokuapp.com/api";
 
 export const getAllDcards = async (limit) => {
     try {
@@ -14,8 +13,7 @@ export const getAllDcards = async (limit) => {
                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
-        const jsonRawData = await response.json();
-        return jsonRawData.data;
+        return await response.json();
     } catch (error) {
         console.error(error);
     }
@@ -33,8 +31,7 @@ export const getAllDcardsBefore = async (beforeId, limit) => {
                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
-        const jsonRawData = await response.json();
-        return jsonRawData.data;
+        return await response.json();
     } catch (error) {
         console.error(error);
     }
@@ -52,8 +49,7 @@ export const searchDcards = async (content) => {
                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
-        const jsonRawData = await response.json();
-        return jsonRawData.data;
+        return await response.json();
     } catch (error) {
         console.error(error);
     }
@@ -71,8 +67,7 @@ export const getDcardsById = async (id) => {
                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
-        const jsonRawData = await response.json();
-        return jsonRawData.data;
+        return await response.json();
     } catch (error) {
         console.error(error);
     }
@@ -90,8 +85,7 @@ export const getDcardsByDate = async (date1, date2) => {
                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
-        const jsonRawData = await response.json();
-        return jsonRawData.data;
+        return await response.json();
     } catch (error) {
         console.error(error);
     }
@@ -109,8 +103,7 @@ export const getTodayDcards = async () => {
                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
-        const jsonRawData = await response.json();
-        return jsonRawData.data;
+        return await response.json();
     } catch (error) {
         console.error(error);
     }
@@ -128,8 +121,7 @@ export const getMonthDcards = async () => {
                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
-        const jsonRawData = await response.json();
-        return jsonRawData.data;
+        return await response.json();
     } catch (error) {
         console.error(error);
     }
@@ -147,8 +139,7 @@ export const getWeekDcards = async () => {
                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
-        const jsonRawData = await response.json();
-        return jsonRawData.data;
+        return await response.json();
     } catch (error) {
         console.error(error);
     }
@@ -166,8 +157,7 @@ export const getGBChart12Data = async () => {
                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
-        const jsonRawData = await response.json();
-        return jsonRawData.data;
+        return await response.json();
     } catch (error) {
         console.error(error);
     }
@@ -185,8 +175,7 @@ export const getGBChart4Data = async () => {
                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
-        const jsonRawData = await response.json();
-        return jsonRawData.data;
+        return await response.json();
     } catch (error) {
         console.error(error);
     }
@@ -204,8 +193,7 @@ export const getLineChart12Data = async () => {
                 'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
-        const jsonRawData = await response.json();
-        return jsonRawData.data;
+        return await response.json();
     } catch (error) {
         console.error(error);
     }
