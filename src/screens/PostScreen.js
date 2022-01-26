@@ -77,10 +77,6 @@ const PostScreen = ({ navigation }) => {
                         extraData={moreData}
                     />
                 )}
-                <ActivityIndicator
-                    size="large"
-                    style={[styles.progressBarStyle, themeProgressBarStyle]}
-                />
             </ScrollView>
             <FloatingButton />
         </SafeAreaView>
