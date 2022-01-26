@@ -1,11 +1,17 @@
 import React, { useEffect, useState, useCallback } from "react";
 import {ActivityIndicator, SafeAreaView, View, Text, FlatList, StyleSheet, Alert, Button, Linking, useColorScheme} from "react-native";
+import {useDispatch, useSelector} from "react-redux";
+import {setDcardDetail} from "../redux/actions/DcardsAction";
 
 const DcardDetailScreen = ({ route }) => {
-    const [isLoading, setLoading] = useState(true);
-    const [dcardData, setData] = useState([]);
     const {postId} = route.params;
-    const articleURL = 'https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/article/' + postId;
+
+    const dcardDetail = useSelector((state) => state.dcards.dcardDetail);
+    const { loading } = useSelector((state) => state.dcards.requestDcardDetail);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(setDcardDetail(postId));
+    }, [])
 
     const colorScheme = useColorScheme();
 
@@ -19,31 +25,6 @@ const DcardDetailScreen = ({ route }) => {
         colorScheme === 'light' ? styles.lightContainer : styles.darkItemContainer;
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
     const themeProgressBarStyle = colorScheme === 'light' ? styles.lightProgressBar : styles.darkProgressBar;
-
-    const getDcardDetail = async () => {
-        try {
-            const response = await fetch(articleURL, {
-                method: 'GET',
-                credentials: 'omit',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-                }
-            });
-            const jsonRawData = await response.json();
-            setData(jsonRawData);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    useEffect(() => {
-        getDcardDetail();
-    }, []);
 
     const supportedURL = "https://www.dcard.tw/f/cgu/p/" + postId;
 
@@ -66,9 +47,9 @@ const DcardDetailScreen = ({ route }) => {
 
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
-            {isLoading ? <ActivityIndicator size="large" style={[styles.progressBarStyle, themeProgressBarStyle]}/> : (
+            {loading === true ? <ActivityIndicator size="large" style={[styles.progressBarStyle, themeProgressBarStyle]}/> : (
                 <FlatList
-                    data={dcardData}
+                    data={dcardDetail}
                     keyExtractor={({ Id }, index) => Id}
                     renderItem={({ item }) => (
                         <View style={styles.containerStyle}>

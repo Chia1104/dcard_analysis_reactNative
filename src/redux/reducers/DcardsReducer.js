@@ -4,13 +4,20 @@ import {
     BEGIN_DCARDS_REQUEST,
     SUCCESS_DCARDS_REQUEST,
     FAIL_DCARDS_REQUEST,
+    BEGIN_DCARD_DETAIL_REQUEST,
+    SUCCESS_DCARD_DETAIL_REQUEST,
+    FAIL_DCARD_DETAIL_REQUEST,
 } from "../../utils/constants";
 
 export const dcardsReducer = (
     state = {
         allDcards: [],
-        dcardDetail: null,
+        dcardDetail: [],
         requestDcards: {
+            loading: false,
+            error: null,
+        },
+        requestDcardDetail: {
             loading: false,
             error: null,
         },
@@ -43,6 +50,25 @@ export const dcardsReducer = (
                 ...state,
                 requestDcards: {
                     ...state.requestDcards,
+                    loading: false,
+                    error: action.payload,
+                },
+            };
+        case BEGIN_DCARD_DETAIL_REQUEST:
+            return {
+                ...state,
+                requestDcardDetail: { ...state.requestDcardDetail, loading: true },
+            };
+        case SUCCESS_DCARD_DETAIL_REQUEST:
+            return {
+                ...state,
+                requestDcardDetail: { ...state.requestDcardDetail, loading: false },
+            };
+        case FAIL_DCARD_DETAIL_REQUEST:
+            return {
+                ...state,
+                requestDcardDetail: {
+                    ...state.requestDcardDetail,
                     loading: false,
                     error: action.payload,
                 },

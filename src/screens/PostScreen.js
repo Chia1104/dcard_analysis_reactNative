@@ -7,8 +7,6 @@ import {setDcardsList} from "../redux/actions/DcardsAction";
 
 const PostScreen = ({ navigation }) => {
 
-    const [moreData, setMoreData] = useState([]);
-
     const colorScheme = useColorScheme();
 
     const themeTextStyle = colorScheme === 'light' ? styles.lightThemeText : styles.darkThemeText;
@@ -23,61 +21,39 @@ const PostScreen = ({ navigation }) => {
     const themeProgressBarStyle = colorScheme === 'light' ? styles.lightProgressBar : styles.darkProgressBar;
 
     const allDcards = useSelector((state) => state.dcards.allDcards);
+    const { loading } = useSelector((state) => state.dcards.requestDcards);
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(setDcardsList(30));
     }, [])
 
-    const getMoreDcards = useCallback(async () => {
-        try {
-            const response = await fetch('https://dcardanalysislaravel-sedok4caqq-de.a.run.app/api/getAllDcard/before/237397832/30', {
-                method: 'GET',
-                credentials: 'omit',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-                }
-            });
-            const jsonRawData = await response.json();
-            setMoreData(jsonRawData);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
-    }, [moreData]);
-
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
-            <ScrollView>
-                {allDcards.length === 0 ? (
-                    <ActivityIndicator
-                        size="large"
-                        style={[styles.progressBarStyle, themeProgressBarStyle]}
-                    />
-                ) : (
-                    <FlatList
-                        data={allDcards}
-                        renderItem={({ item }) => (
-                            <TouchableOpacity
-                                onPress={() =>
-                                    navigation.push("detailStack", {
-                                        postId: item.Id,
-                                    })
-                                }
-                            >
-                                <DcardList dcard={item} navigation={navigation} />
-                            </TouchableOpacity>
-                        )}
-                        keyExtractor={(item) => item.Id}
-                        onEndReached={getMoreDcards}
-                        onEndReachedThreshold={0.9}
-                        extraData={moreData}
-                    />
-                )}
-            </ScrollView>
+            {loading === true ? (
+                <ActivityIndicator
+                    size="large"
+                    style={[styles.progressBarStyle, themeProgressBarStyle]}
+                />
+            ) : (
+                <FlatList
+                    data={allDcards}
+                    renderItem={({ item }) => (
+                        <TouchableOpacity
+                            onPress={() =>
+                                navigation.push("detailStack", {
+                                    postId: item.Id,
+                                })
+                            }
+                        >
+                            <DcardList dcard={item} navigation={navigation} />
+                        </TouchableOpacity>
+                    )}
+                    keyExtractor={(item) => item.Id}
+                    onEndReached={null}
+                    onEndReachedThreshold={0.9}
+                    extraData={null}
+                />
+            )}
             <FloatingButton />
         </SafeAreaView>
     );

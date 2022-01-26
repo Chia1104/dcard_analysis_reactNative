@@ -4,6 +4,9 @@ import {
     BEGIN_DCARDS_REQUEST,
     SUCCESS_DCARDS_REQUEST,
     FAIL_DCARDS_REQUEST,
+    BEGIN_DCARD_DETAIL_REQUEST,
+    SUCCESS_DCARD_DETAIL_REQUEST,
+    FAIL_DCARD_DETAIL_REQUEST,
 } from "../../utils/constants";
 import {
     getAllDcards,
@@ -18,7 +21,7 @@ import {
 
 
 export const setDcardDetail = (id) => async (dispatch) => {
-    dispatch({ type: BEGIN_DCARDS_REQUEST });
+    dispatch({ type: BEGIN_DCARD_DETAIL_REQUEST });
     try {
         const dcardDetail = await getDcardsById(id);
         dispatch({
@@ -27,9 +30,9 @@ export const setDcardDetail = (id) => async (dispatch) => {
         });
     } catch (error) {
         console.log(error);
-        dispatch({ type: FAIL_DCARDS_REQUEST, payload: error });
+        dispatch({ type: FAIL_DCARD_DETAIL_REQUEST, payload: error });
     } finally {
-        dispatch({ type: SUCCESS_DCARDS_REQUEST });
+        dispatch({ type: SUCCESS_DCARD_DETAIL_REQUEST });
     }
 };
 
