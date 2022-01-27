@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, View, useColorScheme} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import {IconButton } from "react-native-paper";
@@ -17,11 +18,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {expandBottomSheet} from "../redux/actions/BottomSheetAction";
 
 const BottomTab = createMaterialBottomTabNavigator();
-const PostStack = createNativeStackNavigator();
-const HomeStack = createNativeStackNavigator();
-const ChartStack = createNativeStackNavigator();
-const ChatStack = createNativeStackNavigator();
-const ProfileStack = createNativeStackNavigator();
+const Stack = createStackNavigator();
+const NativeStack = createNativeStackNavigator();
 
 const MainNavTab = () => {
     const colorScheme = useColorScheme();
@@ -54,8 +52,8 @@ const MainNavTab = () => {
                         ),
                     }}>
                     {() => (
-                        <HomeStack.Navigator>
-                            <HomeStack.Screen
+                        <NativeStack.Navigator>
+                            <NativeStack.Screen
                                 name="homeStack"
                                 component={HomeScreen}
                                 options={{
@@ -63,15 +61,14 @@ const MainNavTab = () => {
                                     headerStyle: {
                                         backgroundColor: {themeContainerColor}
                                     },
-                                    headerTintColor: {themeTextColor},
                                     headerTitleStyle: {
                                         fontWeight: 'bold',
+                                        color: {themeTextColor},
                                     },
-                                    headerTransparent: 'true',
                                     headerTitleAlign: 'center',
                                 }}
                             />
-                        </HomeStack.Navigator>
+                        </NativeStack.Navigator>
                     )}
                 </BottomTab.Screen>
                 <BottomTab.Screen
@@ -83,8 +80,8 @@ const MainNavTab = () => {
                         ),
                     }}>
                     {() => (
-                        <PostStack.Navigator>
-                            <PostStack.Screen
+                        <NativeStack.Navigator>
+                            <NativeStack.Screen
                                 name="postStack"
                                 component={PostScreen}
                                 options={
@@ -99,15 +96,14 @@ const MainNavTab = () => {
                                     headerStyle: {
                                         backgroundColor: {themeContainerColor}
                                     },
-                                    headerTintColor: {themeTextColor},
                                     headerTitleStyle: {
                                         fontWeight: 'bold',
+                                        color: {themeTextColor},
                                     },
-                                    headerTransparent: 'true',
                                     headerTitleAlign: 'center',
                                 })}
                             />
-                            <PostStack.Screen
+                            <NativeStack.Screen
                                 name="detailStack"
                                 component={DcardDetailScreen}
                                 options={{
@@ -115,28 +111,26 @@ const MainNavTab = () => {
                                     headerStyle: {
                                         backgroundColor: {themeContainerColor}
                                     },
-                                    headerTintColor: {themeTextColor},
                                     headerTitleStyle: {
                                         fontWeight: 'bold',
+                                        color: {themeTextColor},
                                     },
-                                    headerTransparent: 'true',
                                     headerTitleAlign: 'center',
                                 }}/>
-                            <PostStack.Screen
+                            <NativeStack.Screen
                                 name="searchStack"
                                 component={SearchScreen} options={{
                                 title: 'Search',
                                 headerStyle: {
                                     backgroundColor: {themeContainerColor}
                                 },
-                                headerTintColor: {themeTextColor},
                                 headerTitleStyle: {
                                     fontWeight: 'bold',
+                                    color: {themeTextColor},
                                 },
-                                headerTransparent: 'true',
                                 headerTitleAlign: 'center',
                             }}/>
-                        </PostStack.Navigator>
+                        </NativeStack.Navigator>
                     )}
                 </BottomTab.Screen>
                 <BottomTab.Screen
@@ -148,8 +142,8 @@ const MainNavTab = () => {
                         ),
                     }}>
                     {() => (
-                        <ChartStack.Navigator>
-                            <ChartStack.Screen
+                        <NativeStack.Navigator>
+                            <NativeStack.Screen
                                 name="chartStack"
                                 component={ChartTopTab}
                                 options={{
@@ -157,15 +151,14 @@ const MainNavTab = () => {
                                     headerStyle: {
                                         backgroundColor: {themeContainerColor}
                                     },
-                                    headerTintColor: {themeTextColor},
                                     headerTitleStyle: {
                                         fontWeight: 'bold',
+                                        color: {themeTextColor},
                                     },
-                                    headerTransparent: 'true',
                                     headerTitleAlign: 'center',
                                 }}
                             />
-                        </ChartStack.Navigator>
+                        </NativeStack.Navigator>
                     )}
                 </BottomTab.Screen>
                 <BottomTab.Screen
@@ -178,8 +171,8 @@ const MainNavTab = () => {
                         tabBarBadge: 3,
                     }}>
                     {() => (
-                        <ChatStack.Navigator>
-                            <ChatStack.Screen
+                        <NativeStack.Navigator>
+                            <NativeStack.Screen
                                 name="chatStack"
                                 component={ChatScreen}
                                 options={{
@@ -187,15 +180,14 @@ const MainNavTab = () => {
                                     headerStyle: {
                                         backgroundColor: {themeContainerColor}
                                     },
-                                    headerTintColor: {themeTextColor},
                                     headerTitleStyle: {
                                         fontWeight: 'bold',
+                                        color: {themeTextColor},
                                     },
-                                    headerTransparent: 'true',
                                     headerTitleAlign: 'center',
                                 }}
                             />
-                        </ChatStack.Navigator>
+                        </NativeStack.Navigator>
                     )}
                 </BottomTab.Screen>
                 <BottomTab.Screen
@@ -207,8 +199,8 @@ const MainNavTab = () => {
                         ),
                     }}>
                     {() => (
-                        <ProfileStack.Navigator>
-                            <ProfileStack.Screen
+                        <NativeStack.Navigator>
+                            <NativeStack.Screen
                                 name="profileStack"
                                 component={ProfileScreen}
                                 options={
@@ -225,15 +217,14 @@ const MainNavTab = () => {
                                         headerStyle: {
                                             backgroundColor: {themeContainerColor}
                                         },
-                                        headerTintColor: {themeTextColor},
                                         headerTitleStyle: {
                                             fontWeight: 'bold',
+                                            color: {themeTextColor},
                                         },
-                                        headerTransparent: 'true',
                                         headerTitleAlign: 'center',
                                     })}
                             />
-                        </ProfileStack.Navigator>
+                        </NativeStack.Navigator>
                     )}
                 </BottomTab.Screen>
             </BottomTab.Navigator>
