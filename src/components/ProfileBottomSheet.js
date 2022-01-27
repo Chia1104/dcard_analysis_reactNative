@@ -45,8 +45,8 @@ const ProfileBottomSheet = () => {
         props => (
             <BottomSheetBackdrop
                 {...props}
-                disappearsOnIndex={-1}
-                appearsOnIndex={1}
+                disappearsOnIndex={!1}
+                appearsOnIndex={!-1}
             />
         ),
         []
