@@ -3,7 +3,7 @@ const URL_BACKUP = "https://fathomless-fjord-03751.herokuapp.com/api";
 
 export const getAllDcards = async (limit) => {
     try {
-        const response = await fetch(`${URL}/getAllDcard/${limit}`, {
+        const response = await fetch(`${URL}/dcard?limit=${limit}`, {
             method: 'GET',
             credentials: 'omit',
             headers: {
@@ -21,7 +21,7 @@ export const getAllDcards = async (limit) => {
 
 export const getAllDcardsBefore = async (beforeId, limit) => {
     try {
-        const response = await fetch(`${URL}/getAllDcard/before/${beforeId}/${limit}`, {
+        const response = await fetch(`${URL}/dcardBefore?beforeId=${beforeId}&limit=${limit}`, {
             method: 'GET',
             credentials: 'omit',
             headers: {
@@ -39,7 +39,7 @@ export const getAllDcardsBefore = async (beforeId, limit) => {
 
 export const searchDcards = async (content) => {
     try {
-        const response = await fetch(`${URL}/getAllDcard/search/${content}`, {
+        const response = await fetch(`${URL}/dcardSearch?search=${content}`, {
             method: 'GET',
             credentials: 'omit',
             headers: {
