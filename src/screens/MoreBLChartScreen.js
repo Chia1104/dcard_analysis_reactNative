@@ -1,6 +1,8 @@
 import React from "react";
 import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme } from "react-native";
 
+import MoreBarChart from "../components/MoreBarChart";
+
 const MoreBLChartScreen = () => {
 
     const colorScheme = useColorScheme();
@@ -18,9 +20,7 @@ const MoreBLChartScreen = () => {
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
             <View style={styles.container}>
-                <Text style={[themeTextStyle]}>
-                    MoreBLChartScreen
-                </Text>
+                <MoreBarChart />
             </View>
         </SafeAreaView>
     );
