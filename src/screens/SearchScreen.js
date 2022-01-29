@@ -1,6 +1,6 @@
 import React from "react";
 import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme } from "react-native";
-import { Searchbar } from 'react-native-paper';
+import { Searchbar, Provider } from 'react-native-paper';
 
 const SearchScreen = () => {
 
@@ -21,12 +21,14 @@ const SearchScreen = () => {
 
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
-            <Searchbar
-                placeholder="Search"
-                onChangeText={onChangeSearch}
-                value={searchQuery}
-                // style={themeContainerStyle}
-            />
+            <Provider>
+                <Searchbar
+                    placeholder="Search"
+                    onChangeText={onChangeSearch}
+                    value={searchQuery}
+                    // style={themeContainerStyle}
+                />
+            </Provider>
         </SafeAreaView>
     );
 };
