@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from "react";
 import {ActivityIndicator, SafeAreaView, View, Text, FlatList, StyleSheet, Alert, Button, Linking, useColorScheme} from "react-native";
 import {useDispatch, useSelector} from "react-redux";
 import {setDcardDetail} from "../redux/actions/DcardsAction";
+import LoadingScreen from "../components/LoadingScreen"
 
 const DcardDetailScreen = ({ route }) => {
     const {postId} = route.params;
@@ -47,7 +48,7 @@ const DcardDetailScreen = ({ route }) => {
 
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
-            {loading === true ? <ActivityIndicator size="large" style={[styles.progressBarStyle, themeProgressBarStyle]}/> : (
+            {loading === true ? <LoadingScreen /> : (
                 <FlatList
                     data={dcardDetail}
                     keyExtractor={({ Id }, index) => Id}
