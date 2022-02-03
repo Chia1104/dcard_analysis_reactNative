@@ -7,6 +7,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import {IconButton } from "react-native-paper";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import HomeScreen from "../screens/HomeScreen";
 import PostScreen from "../screens/PostScreen";
@@ -54,23 +55,25 @@ const MainNavTab = () => {
                         ),
                     }}>
                     {() => (
-                        <NativeStack.Navigator>
-                            <NativeStack.Screen
-                                name="homeStack"
-                                component={HomeScreen}
-                                options={{
-                                    title: 'Home',
-                                    headerStyle: {
-                                        backgroundColor: {themeContainerColor}
-                                    },
-                                    headerTitleStyle: {
-                                        fontWeight: 'bold',
-                                        color: {themeTextColor},
-                                    },
-                                    headerTitleAlign: 'center',
-                                }}
-                            />
-                        </NativeStack.Navigator>
+                        <SafeAreaProvider>
+                            <NativeStack.Navigator>
+                                <NativeStack.Screen
+                                    name="homeStack"
+                                    component={HomeScreen}
+                                    options={{
+                                        title: 'Home',
+                                        headerStyle: {
+                                            backgroundColor: {themeContainerColor}
+                                        },
+                                        headerTitleStyle: {
+                                            fontWeight: 'bold',
+                                            color: {themeTextColor},
+                                        },
+                                        headerTitleAlign: 'center',
+                                    }}
+                                />
+                            </NativeStack.Navigator>
+                        </SafeAreaProvider>
                     )}
                 </BottomTab.Screen>
                 <BottomTab.Screen
@@ -82,34 +85,48 @@ const MainNavTab = () => {
                         ),
                     }}>
                     {() => (
-                        <NativeStack.Navigator>
-                            <NativeStack.Screen
-                                name="postStack"
-                                component={PostScreen}
-                                options={
-                                ({navigation}) => ({
-                                    headerRight: () =>
-                                        <IconButton
-                                            onPress={() => navigation.push('searchStack')}
-                                            color={themeTextColor}
-                                            icon="magnify"
-                                        />,
-                                    title: 'Post',
-                                    headerStyle: {
-                                        backgroundColor: {themeContainerColor}
-                                    },
-                                    headerTitleStyle: {
-                                        fontWeight: 'bold',
-                                        color: {themeTextColor},
-                                    },
-                                    headerTitleAlign: 'center',
-                                })}
-                            />
-                            <NativeStack.Screen
-                                name="detailStack"
-                                component={DcardDetailScreen}
-                                options={{
-                                    title: 'Detail',
+                        <SafeAreaProvider>
+                            <NativeStack.Navigator>
+                                <NativeStack.Screen
+                                    name="postStack"
+                                    component={PostScreen}
+                                    options={
+                                        ({navigation}) => ({
+                                            headerRight: () =>
+                                                <IconButton
+                                                    onPress={() => navigation.push('searchStack')}
+                                                    color={themeTextColor}
+                                                    icon="magnify"
+                                                />,
+                                            title: 'Post',
+                                            headerStyle: {
+                                                backgroundColor: {themeContainerColor}
+                                            },
+                                            headerTitleStyle: {
+                                                fontWeight: 'bold',
+                                                color: {themeTextColor},
+                                            },
+                                            headerTitleAlign: 'center',
+                                        })}
+                                />
+                                <NativeStack.Screen
+                                    name="detailStack"
+                                    component={DcardDetailScreen}
+                                    options={{
+                                        title: 'Detail',
+                                        headerStyle: {
+                                            backgroundColor: {themeContainerColor}
+                                        },
+                                        headerTitleStyle: {
+                                            fontWeight: 'bold',
+                                            color: {themeTextColor},
+                                        },
+                                        headerTitleAlign: 'center',
+                                    }}/>
+                                <NativeStack.Screen
+                                    name="searchStack"
+                                    component={SearchScreen} options={{
+                                    title: 'Search',
                                     headerStyle: {
                                         backgroundColor: {themeContainerColor}
                                     },
@@ -119,20 +136,8 @@ const MainNavTab = () => {
                                     },
                                     headerTitleAlign: 'center',
                                 }}/>
-                            <NativeStack.Screen
-                                name="searchStack"
-                                component={SearchScreen} options={{
-                                title: 'Search',
-                                headerStyle: {
-                                    backgroundColor: {themeContainerColor}
-                                },
-                                headerTitleStyle: {
-                                    fontWeight: 'bold',
-                                    color: {themeTextColor},
-                                },
-                                headerTitleAlign: 'center',
-                            }}/>
-                        </NativeStack.Navigator>
+                            </NativeStack.Navigator>
+                        </SafeAreaProvider>
                     )}
                 </BottomTab.Screen>
                 <BottomTab.Screen
@@ -144,23 +149,25 @@ const MainNavTab = () => {
                         ),
                     }}>
                     {() => (
-                        <NativeStack.Navigator>
-                            <NativeStack.Screen
-                                name="chartStack"
-                                component={ChartTopTab}
-                                options={{
-                                    title: 'Chart',
-                                    headerStyle: {
-                                        backgroundColor: {themeContainerColor}
-                                    },
-                                    headerTitleStyle: {
-                                        fontWeight: 'bold',
-                                        color: {themeTextColor},
-                                    },
-                                    headerTitleAlign: 'center',
-                                }}
-                            />
-                        </NativeStack.Navigator>
+                        <SafeAreaProvider>
+                            <NativeStack.Navigator>
+                                <NativeStack.Screen
+                                    name="chartStack"
+                                    component={ChartTopTab}
+                                    options={{
+                                        title: 'Chart',
+                                        headerStyle: {
+                                            backgroundColor: {themeContainerColor}
+                                        },
+                                        headerTitleStyle: {
+                                            fontWeight: 'bold',
+                                            color: {themeTextColor},
+                                        },
+                                        headerTitleAlign: 'center',
+                                    }}
+                                />
+                            </NativeStack.Navigator>
+                        </SafeAreaProvider>
                     )}
                 </BottomTab.Screen>
                 <BottomTab.Screen
@@ -173,23 +180,25 @@ const MainNavTab = () => {
                         tabBarBadge: 3,
                     }}>
                     {() => (
-                        <NativeStack.Navigator>
-                            <NativeStack.Screen
-                                name="chatStack"
-                                component={ChatScreen}
-                                options={{
-                                    title: 'Chat',
-                                    headerStyle: {
-                                        backgroundColor: {themeContainerColor}
-                                    },
-                                    headerTitleStyle: {
-                                        fontWeight: 'bold',
-                                        color: {themeTextColor},
-                                    },
-                                    headerTitleAlign: 'center',
-                                }}
-                            />
-                        </NativeStack.Navigator>
+                        <SafeAreaProvider>
+                            <NativeStack.Navigator>
+                                <NativeStack.Screen
+                                    name="chatStack"
+                                    component={ChatScreen}
+                                    options={{
+                                        title: 'Chat',
+                                        headerStyle: {
+                                            backgroundColor: {themeContainerColor}
+                                        },
+                                        headerTitleStyle: {
+                                            fontWeight: 'bold',
+                                            color: {themeTextColor},
+                                        },
+                                        headerTitleAlign: 'center',
+                                    }}
+                                />
+                            </NativeStack.Navigator>
+                        </SafeAreaProvider>
                     )}
                 </BottomTab.Screen>
                 <BottomTab.Screen
@@ -201,32 +210,34 @@ const MainNavTab = () => {
                         ),
                     }}>
                     {() => (
-                        <NativeStack.Navigator>
-                            <NativeStack.Screen
-                                name="profileStack"
-                                component={ProfileScreen}
-                                options={
-                                    () => ({
-                                        headerRight: () =>
-                                            <IconButton
-                                                onPress={() => {
-                                                    dispatch(expandBottomSheet);
-                                                }}
-                                                color={themeTextColor}
-                                                icon="cog-outline"
-                                            />,
-                                        title: 'Profile',
-                                        headerStyle: {
-                                            backgroundColor: {themeContainerColor}
-                                        },
-                                        headerTitleStyle: {
-                                            fontWeight: 'bold',
-                                            color: {themeTextColor},
-                                        },
-                                        headerTitleAlign: 'center',
-                                    })}
-                            />
-                        </NativeStack.Navigator>
+                        <SafeAreaProvider>
+                            <NativeStack.Navigator>
+                                <NativeStack.Screen
+                                    name="profileStack"
+                                    component={ProfileScreen}
+                                    options={
+                                        () => ({
+                                            headerRight: () =>
+                                                <IconButton
+                                                    onPress={() => {
+                                                        dispatch(expandBottomSheet);
+                                                    }}
+                                                    color={themeTextColor}
+                                                    icon="cog-outline"
+                                                />,
+                                            title: 'Profile',
+                                            headerStyle: {
+                                                backgroundColor: {themeContainerColor}
+                                            },
+                                            headerTitleStyle: {
+                                                fontWeight: 'bold',
+                                                color: {themeTextColor},
+                                            },
+                                            headerTitleAlign: 'center',
+                                        })}
+                                />
+                            </NativeStack.Navigator>
+                        </SafeAreaProvider>
                     )}
                 </BottomTab.Screen>
             </BottomTab.Navigator>

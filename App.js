@@ -7,7 +7,7 @@ import store from './src/redux/store';
 import { NativeBaseProvider } from "native-base";
 import LoginScreen from './src/screens/LoginScreen';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import {setDcardDetail} from "./src/redux/actions/DcardsAction";
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 export default function App() {
     const [userInfo,setUserInfo]=useState(null)
@@ -28,9 +28,11 @@ export default function App() {
         <Provider store={store}>
             <GestureHandlerRootView style={{ flex: 1 }}>
                 <Portal.Host>
-                    <NativeBaseProvider>
-                        <MainNavTab />
-                    </NativeBaseProvider>
+                    <SafeAreaProvider>
+                        <NativeBaseProvider>
+                            <MainNavTab />
+                        </NativeBaseProvider>
+                    </SafeAreaProvider>
                 </Portal.Host>
             </GestureHandlerRootView>
         </Provider>
