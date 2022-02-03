@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import {IconButton } from "react-native-paper";
 
@@ -17,9 +18,10 @@ import ChartTopTab from "./ChartTopTab";
 import {useDispatch, useSelector} from "react-redux";
 import {expandBottomSheet} from "../redux/actions/BottomSheetAction";
 
+const NativeStack = createNativeStackNavigator();
 const BottomTab = createMaterialBottomTabNavigator();
 const Stack = createStackNavigator();
-const NativeStack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 const MainNavTab = () => {
     const colorScheme = useColorScheme();
