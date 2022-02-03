@@ -7,6 +7,9 @@ import {
 import {
     bottomSheetReducer,
 }from "../reducers/BottomSheetReducer";
+import {
+    authReducer,
+}from "../reducers/AuthReducer";
 
 
 const initialState = {
@@ -15,6 +18,7 @@ const initialState = {
 const reducer = combineReducers({
     dcards: dcardsReducer,
     bottomSheet: bottomSheetReducer,
+    auth: authReducer,
 });
 const composeEnhancer = compose;
 const store = createStore(

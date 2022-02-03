@@ -4,7 +4,7 @@ import DcardList from "../components/DcardList";
 import FloatingButton from "../components/FloatingButton";
 import { useDispatch, useSelector } from "react-redux";
 import {setDcardsList} from "../redux/actions/DcardsAction";
-import LoadingListScreen from "../components/LoadingListScreen";
+import LoadingList from "../components/LoadingList";
 
 const PostScreen = ({ navigation }) => {
 
@@ -31,7 +31,7 @@ const PostScreen = ({ navigation }) => {
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
             {loading === true ? (
-                <LoadingListScreen />
+                <LoadingList />
             ) : (
                 <FlatList
                     data={allDcards}

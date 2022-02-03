@@ -4,12 +4,10 @@ import {Skeleton, VStack, Center, NativeBaseProvider, HStack, Spinner} from "nat
 
 const LoadingSpinner = () => {
     return (
-        <NativeBaseProvider>
-            <Spinner
-                size="lg"
-                // color='powderblue'
-            />
-        </NativeBaseProvider>
+        <Spinner
+            size="lg"
+            // color='powderblue'
+        />
     );
 };
 

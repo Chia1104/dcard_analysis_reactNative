@@ -1,5 +1,6 @@
-const URL = "https://phplaravel-fdqsyjapma-de.a.run.app/api";
+const URL_NOW = "https://phplaravel-fdqsyjapma-de.a.run.app/api";
 const URL_BACKUP = "https://fathomless-fjord-03751.herokuapp.com/api";
+const URL= "https://fathomless-fjord-03751.herokuapp.com/api";
 
 export const getAllDcards = async (limit) => {
     try {
@@ -9,8 +10,6 @@ export const getAllDcards = async (limit) => {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
         return await response.json();
@@ -27,8 +26,6 @@ export const getAllDcardsBefore = async (beforeId, limit) => {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
         return await response.json();
@@ -45,8 +42,6 @@ export const searchDcards = async (content) => {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
         return await response.json();
@@ -63,8 +58,6 @@ export const getDcardsById = async (id) => {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
         return await response.json();
@@ -81,8 +74,6 @@ export const getDcardsByDate = async (date1, date2) => {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
         return await response.json();
@@ -99,8 +90,6 @@ export const getTodayDcards = async () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
         return await response.json();
@@ -117,8 +106,6 @@ export const getMonthDcards = async () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
         return await response.json();
@@ -135,8 +122,6 @@ export const getWeekDcards = async () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
         return await response.json();
@@ -153,8 +138,6 @@ export const getGBChart12Data = async () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
         return await response.json();
@@ -171,8 +154,6 @@ export const getGBChart4Data = async () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
         return await response.json();
@@ -189,12 +170,54 @@ export const getLineChart12Data = async () => {
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
             }
         });
         return await response.json();
     } catch (error) {
         console.error(error);
+    }
+}
+
+export const login = async (email, password) => {
+    try {
+        const response = await fetch(`${URL}/login`, {
+            method: 'post',
+            credentials: 'omit',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            params: {
+                'email': email,
+                'password': password,
+            }
+        });
+        await response.json();
+        return { message: response.message, token: response.token, name: response.name };
+    } catch (error) {
+        return { message: error.response.message };
+    }
+}
+
+export const register = async (email, name, password, c_password) => {
+    try {
+        const response = await fetch(`${URL}/register`, {
+            method: 'post',
+            credentials: 'omit',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            params: {
+                'email': email,
+                'name': name,
+                'password': password,
+                'c_password': c_password,
+            }
+        });
+        await response.json();
+        return {message: response.message, token: response.token, name: response.name };
+    } catch (error) {
+        return { message: error.response.message };
     }
 }

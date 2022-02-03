@@ -17,7 +17,7 @@ import {
     getTodayDcards,
     getMonthDcards,
     getWeekDcards,
-} from "../../api/api";
+} from "../../api";
 
 
 export const setDcardDetail = (id) => async (dispatch) => {
