@@ -30,7 +30,7 @@ export default function App() {
                 <Portal.Host>
                     <SafeAreaProvider>
                         <NativeBaseProvider>
-                            <MainNavTab />
+                            <LoginScreen />
                         </NativeBaseProvider>
                     </SafeAreaProvider>
                 </Portal.Host>
