@@ -1,12 +1,16 @@
 import {
     SET_DCARD_DETAIL,
     SET_DCARDS_LIST,
+    SET_SEARCH_DCARDS_LIST,
     BEGIN_DCARDS_REQUEST,
     SUCCESS_DCARDS_REQUEST,
     FAIL_DCARDS_REQUEST,
     BEGIN_DCARD_DETAIL_REQUEST,
     SUCCESS_DCARD_DETAIL_REQUEST,
     FAIL_DCARD_DETAIL_REQUEST,
+    BEGIN_SEARCH_DCARDS_REQUEST,
+    SUCCESS_SEARCH_DCARDS_REQUEST,
+    FAIL_SEARCH_DCARDS_REQUEST,
 } from "../../utils/constants";
 import {
     getAllDcards,
@@ -52,3 +56,19 @@ export const setDcardsList = (limit) => async (dispatch) => {
         dispatch({ type: SUCCESS_DCARDS_REQUEST });
     }
 };
+
+export const searchDcard = (searchContent) => async (dispatch) => {
+    dispatch({ type: BEGIN_SEARCH_DCARDS_REQUEST });
+    try {
+        const dcardSearch = await searchDcards(searchContent);
+        dispatch({
+            type: SET_SEARCH_DCARDS_LIST,
+            payload: dcardSearch,
+        });
+    } catch (error) {
+        console.log(error);
+        dispatch({ type: FAIL_SEARCH_DCARDS_REQUEST, payload: error });
+    } finally {
+        dispatch({ type: SUCCESS_SEARCH_DCARDS_REQUEST });
+    }
+}

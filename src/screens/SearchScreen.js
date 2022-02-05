@@ -1,11 +1,19 @@
-import React from "react";
-import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme } from "react-native";
+import React, {useEffect} from "react";
+import {SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme, TouchableOpacity} from "react-native";
 import { Searchbar, Provider } from 'react-native-paper';
+import DcardList from "../components/DcardList";
+import {useDispatch, useSelector} from "react-redux";
+import {searchDcard} from "../redux/actions/DcardsAction";
+import LoadingList from "../components/LoadingList";
 
-const SearchScreen = () => {
+const SearchScreen = ({ navigation }) => {
 
+    const dispatch = useDispatch();
     const [searchQuery, setSearchQuery] = React.useState('');
-    const onChangeSearch = query => setSearchQuery(query);
+    const onChange = query => setSearchQuery(query);
+
+    const allDcards = useSelector((state) => state.dcards.searchDcard);
+    const { loading } = useSelector((state) => state.dcards.requestSearchDcard);
 
     const colorScheme = useColorScheme();
 
@@ -24,10 +32,35 @@ const SearchScreen = () => {
             <Provider>
                 <Searchbar
                     placeholder="Search"
-                    onChangeText={onChangeSearch}
+                    onChangeText={onChange}
+                    onIconPress={(query) => {
+                        // setSearchQuery(query)
+                        dispatch(searchDcard(searchQuery))
+                    }}
                     value={searchQuery}
-                    // style={themeContainerStyle}
                 />
+                {loading === true ? (
+                    <LoadingList />
+                ) : (
+                    <FlatList
+                        data={allDcards}
+                        renderItem={({ item }) => (
+                            <TouchableOpacity
+                                onPress={() =>
+                                    navigation.push("detailStack", {
+                                        postId: item.Id,
+                                    })
+                                }
+                            >
+                                <DcardList dcard={item} navigation={navigation} />
+                            </TouchableOpacity>
+                        )}
+                        keyExtractor={(item) => item.Id}
+                        onEndReached={null}
+                        onEndReachedThreshold={0.9}
+                        extraData={null}
+                    />
+                )}
             </Provider>
         </SafeAreaView>
     );

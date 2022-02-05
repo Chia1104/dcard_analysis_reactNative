@@ -1,6 +1,6 @@
 const URL_NOW = "https://dcard-analysis-laravel-fdqsyjapma-de.a.run.app/api";
 const URL_BACKUP = "https://fathomless-fjord-03751.herokuapp.com/api";
-const URL= "https://dcard-analysis-laravel-fdqsyjapma-de.a.run.app/api";
+const URL = "https://dcard-analysis-laravel-fdqsyjapma-de.a.run.app/api";
 
 export const getAllDcards = async (limit) => {
     try {
