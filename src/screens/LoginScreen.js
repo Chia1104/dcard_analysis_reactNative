@@ -3,6 +3,7 @@ import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme } from "
 import {Input, Box, Center, Icon, FormControl, WarningOutlineIcon, Button, Stack, AspectRatio, Image, Heading, HStack, NativeBaseProvider} from "native-base";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { LinearGradient } from 'expo-linear-gradient';
+import SnowAnimation from "../components/SnowAnimation";
 
 const LoginScreen = () => {
 
@@ -14,9 +15,12 @@ const LoginScreen = () => {
 
     return (
         <SafeAreaView style={{ flex: 1 , alignItems: "center"}}>
+            <SnowAnimation />
             <NativeBaseProvider config={config}>
                 <Center flex={1} px="3">
-                    <Box bg={{
+                    <Box
+                        mt={80}
+                        bg={{
                         linearGradient: {
                             colors: ["lightBlue.300", "violet.800"],
                             start: [1, 0],
