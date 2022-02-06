@@ -182,7 +182,6 @@ export const login = async (email, password) => {
     try {
         const response = await fetch(`${URL}/login`, {
             method: 'post',
-            credentials: 'omit',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
