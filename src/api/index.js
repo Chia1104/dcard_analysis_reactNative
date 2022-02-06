@@ -2,15 +2,15 @@ const URL_NOW = "https://dcard-analysis-laravel-fdqsyjapma-de.a.run.app/api";
 const URL_BACKUP = "https://fathomless-fjord-03751.herokuapp.com/api";
 const URL = "https://dcard-analysis-laravel-fdqsyjapma-de.a.run.app/api";
 
-export const getAllDcards = async (limit) => {
+export const getAllDcards = async (limit, token) => {
     try {
         const response = await fetch(`${URL}/dcard?limit=${limit}`, {
             method: 'GET',
-            credentials: 'omit',
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
+                Authorization: `Bearer ${token}`
+            },
         });
         return await response.json();
     } catch (error) {
@@ -18,15 +18,15 @@ export const getAllDcards = async (limit) => {
     }
 }
 
-export const getAllDcardsBefore = async (beforeId, limit) => {
+export const getAllDcardsBefore = async (beforeId, limit, token) => {
     try {
         const response = await fetch(`${URL}/dcardBefore?beforeId=${beforeId}&limit=${limit}`, {
             method: 'GET',
-            credentials: 'omit',
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
+                Authorization: `Bearer ${token}`
+            },
         });
         return await response.json();
     } catch (error) {
@@ -34,15 +34,15 @@ export const getAllDcardsBefore = async (beforeId, limit) => {
     }
 }
 
-export const searchDcards = async (content) => {
+export const searchDcards = async (content, token) => {
     try {
         const response = await fetch(`${URL}/dcardSearch?search=${content}`, {
             method: 'GET',
-            credentials: 'omit',
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
+                Authorization: `Bearer ${token}`
+            },
         });
         return await response.json();
     } catch (error) {
@@ -50,15 +50,15 @@ export const searchDcards = async (content) => {
     }
 }
 
-export const getDcardsById = async (id) => {
+export const getDcardsById = async (id, token) => {
     try {
         const response = await fetch(`${URL}/article/${id}`, {
             method: 'GET',
-            credentials: 'omit',
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
+                Authorization: `Bearer ${token}`
+            },
         });
         return await response.json();
     } catch (error) {
@@ -66,15 +66,15 @@ export const getDcardsById = async (id) => {
     }
 }
 
-export const getDcardsByDate = async (date1, date2) => {
+export const getDcardsByDate = async (date1, date2, token) => {
     try {
         const response = await fetch(`${URL}/date/${date1}/${date2}`, {
             method: 'GET',
-            credentials: 'omit',
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
+                Authorization: `Bearer ${token}`
+            },
         });
         return await response.json();
     } catch (error) {
@@ -82,15 +82,15 @@ export const getDcardsByDate = async (date1, date2) => {
     }
 }
 
-export const getTodayDcards = async () => {
+export const getTodayDcards = async (token) => {
     try {
         const response = await fetch(`${URL}/date/today`, {
             method: 'GET',
-            credentials: 'omit',
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
+                Authorization: `Bearer ${token}`
+            },
         });
         return await response.json();
     } catch (error) {
@@ -98,15 +98,15 @@ export const getTodayDcards = async () => {
     }
 }
 
-export const getMonthDcards = async () => {
+export const getMonthDcards = async (token) => {
     try {
         const response = await fetch(`${URL}/date/month`, {
             method: 'GET',
-            credentials: 'omit',
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
+                Authorization: `Bearer ${token}`
+            },
         });
         return await response.json();
     } catch (error) {
@@ -114,15 +114,15 @@ export const getMonthDcards = async () => {
     }
 }
 
-export const getWeekDcards = async () => {
+export const getWeekDcards = async (token) => {
     try {
         const response = await fetch(`${URL}/date/week`, {
             method: 'GET',
-            credentials: 'omit',
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
+                Authorization: `Bearer ${token}`
+            },
         });
         return await response.json();
     } catch (error) {
@@ -130,15 +130,15 @@ export const getWeekDcards = async () => {
     }
 }
 
-export const getGBChart12Data = async () => {
+export const getGBChart12Data = async (token) => {
     try {
         const response = await fetch(`${URL}/GBChart12Data`, {
             method: 'GET',
-            credentials: 'omit',
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
+                Authorization: `Bearer ${token}`
+            },
         });
         return await response.json();
     } catch (error) {
@@ -146,15 +146,15 @@ export const getGBChart12Data = async () => {
     }
 }
 
-export const getGBChart4Data = async () => {
+export const getGBChart4Data = async (token) => {
     try {
         const response = await fetch(`${URL}/GBChart4Data`, {
             method: 'GET',
-            credentials: 'omit',
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
+                Authorization: `Bearer ${token}`
+            },
         });
         return await response.json();
     } catch (error) {
@@ -162,15 +162,15 @@ export const getGBChart4Data = async () => {
     }
 }
 
-export const getLineChart12Data = async () => {
+export const getLineChart12Data = async (token) => {
     try {
         const response = await fetch(`${URL}/LineChart12Data`, {
             method: 'GET',
-            credentials: 'omit',
             headers: {
+                Accept: 'application/json',
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-            }
+                Authorization: `Bearer ${token}`
+            },
         });
         return await response.json();
     } catch (error) {
@@ -183,18 +183,18 @@ export const login = async (email, password) => {
         const response = await fetch(`${URL}/login`, {
             method: 'post',
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
             },
-            params: {
-                'email': email,
-                'password': password,
-            }
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
         });
-        await response.json();
-        return { message: response.message, token: response.token, name: response.name };
+        const res = await response.json();
+        return { message: res.message, token: res.token, name: res.name };
     } catch (error) {
-        return { message: error.response.message };
+        console.error(error);
     }
 }
 
@@ -202,21 +202,20 @@ export const register = async (email, name, password, c_password) => {
     try {
         const response = await fetch(`${URL}/register`, {
             method: 'post',
-            credentials: 'omit',
             headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json',
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
             },
-            params: {
-                'email': email,
-                'name': name,
-                'password': password,
-                'c_password': c_password,
-            }
+            body: JSON.stringify({
+                email: email,
+                name: name,
+                password: password,
+                c_password: c_password
+            })
         });
-        await response.json();
-        return {message: response.message, token: response.token, name: response.name };
+        const res = await response.json();
+        return { message: res.message, token: res.token, name: res.name };
     } catch (error) {
-        return { message: error.response.message };
+        console.error(error);
     }
 }

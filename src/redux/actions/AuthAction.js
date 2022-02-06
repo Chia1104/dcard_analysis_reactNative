@@ -9,7 +9,7 @@ import {
     SUCCESS_UPDATE_USERINFO,
     FAIL_UPDATE_USERINFO,
     LOGOUT_REQUEST,
-    REMEMBER_LOGIN,
+    REMEMBER_LOGIN, UNEXPAND_BOTTOM_SHEET,
 } from "../../utils/constants";
 import {
     login,
@@ -17,13 +17,10 @@ import {
 } from "../../api";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const loginAction = (userInfo) => async (dispatch) => {
+export const loginAction = (email, password) => async (dispatch) => {
     dispatch({ type: BEGIN_LOGIN_REQUEST });
     try {
-        const res = await login(
-            userInfo.email,
-            userInfo.password
-        );
+        const res = await login(email, password);
         console.log("after login ...");
         console.log(res);
         if (res.message === "success") {
@@ -50,4 +47,12 @@ export const loginAction = (userInfo) => async (dispatch) => {
         console.log(e);
         return null;
     }
+};
+
+export const logout = (dispatch) => {
+    dispatch({
+        type: FAIL_LOGIN_REQUEST,
+        payload: 'Unauthorised'
+    });
+    AsyncStorage.clear();
 };

@@ -3,15 +3,29 @@ import {ActivityIndicator, SafeAreaView, View, Text, FlatList, StyleSheet, Alert
 import {useDispatch, useSelector} from "react-redux";
 import {setDcardDetail} from "../redux/actions/DcardsAction";
 import LoadingDetail from "../components/LoadingDetail"
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const DcardDetailScreen = ({ route }) => {
     const {postId} = route.params;
+
+    const [userInfo,setUserInfo]=useState(null)
+    const getUserInfo = async () => {
+        try {
+            const item = await AsyncStorage.getItem('userInfo');
+            const itemParse = JSON.parse(item);
+            setUserInfo(itemParse.token)
+        } catch (e) {
+            setUserInfo(null)
+            console.log("error", e);
+        }
+    };
 
     const dcardDetail = useSelector((state) => state.dcards.dcardDetail);
     const { loading } = useSelector((state) => state.dcards.requestDcardDetail);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(setDcardDetail(postId));
+        getUserInfo();
+        dispatch(setDcardDetail(postId, userInfo));
     }, [])
 
     const colorScheme = useColorScheme();

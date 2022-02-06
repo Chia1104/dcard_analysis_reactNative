@@ -12,7 +12,7 @@ import {
 export const authReducer = (
     state = {
         loading: false,
-        verified: false,
+        verified: null,
         userInfo: null,
         error: "",
     },

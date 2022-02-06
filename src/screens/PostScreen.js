@@ -5,6 +5,7 @@ import FloatingButton from "../components/FloatingButton";
 import { useDispatch, useSelector } from "react-redux";
 import {setDcardsList} from "../redux/actions/DcardsAction";
 import LoadingList from "../components/LoadingList";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const PostScreen = ({ navigation }) => {
 
@@ -21,11 +22,24 @@ const PostScreen = ({ navigation }) => {
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
     const themeProgressBarStyle = colorScheme === 'light' ? styles.lightProgressBar : styles.darkProgressBar;
 
+    const [userInfo,setUserInfo]=useState(null)
+    const getUserInfo = async () => {
+        try {
+            const item = await AsyncStorage.getItem('userInfo');
+            const itemParse = JSON.parse(item);
+            setUserInfo(itemParse.token)
+        } catch (e) {
+            setUserInfo(null)
+            console.log("error", e);
+        }
+    };
+
     const allDcards = useSelector((state) => state.dcards.allDcards);
     const { loading } = useSelector((state) => state.dcards.requestDcards);
     const dispatch = useDispatch();
     useEffect(() => {
-        dispatch(setDcardsList(30));
+        getUserInfo();
+        dispatch(setDcardsList(30, userInfo));
     }, [])
 
     return (

@@ -24,10 +24,10 @@ import {
 } from "../../api";
 
 
-export const setDcardDetail = (id) => async (dispatch) => {
+export const setDcardDetail = (id, token) => async (dispatch) => {
     dispatch({ type: BEGIN_DCARD_DETAIL_REQUEST });
     try {
-        const dcardDetail = await getDcardsById(id);
+        const dcardDetail = await getDcardsById(id, token);
         dispatch({
             type: SET_DCARD_DETAIL,
             payload: dcardDetail,
@@ -40,11 +40,11 @@ export const setDcardDetail = (id) => async (dispatch) => {
     }
 };
 
-export const setDcardsList = (limit) => async (dispatch) => {
+export const setDcardsList = (limit, token) => async (dispatch) => {
     let allDcards = [];
     dispatch({ type: BEGIN_DCARDS_REQUEST });
     try {
-        allDcards = await getAllDcards(limit);
+        allDcards = await getAllDcards(limit, token);
         dispatch({
             type: SET_DCARDS_LIST,
             payload: allDcards,
@@ -57,10 +57,10 @@ export const setDcardsList = (limit) => async (dispatch) => {
     }
 };
 
-export const searchDcard = (searchContent) => async (dispatch) => {
+export const searchDcard = (searchContent, token) => async (dispatch) => {
     dispatch({ type: BEGIN_SEARCH_DCARDS_REQUEST });
     try {
-        const dcardSearch = await searchDcards(searchContent);
+        const dcardSearch = await searchDcards(searchContent, token);
         dispatch({
             type: SET_SEARCH_DCARDS_LIST,
             payload: dcardSearch,

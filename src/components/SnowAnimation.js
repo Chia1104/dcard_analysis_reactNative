@@ -3,7 +3,7 @@ import LottieView from 'lottie-react-native';
 
 const SnowAnimation = () => {
     return (
-        <LottieView source={require('../lottieJson/88298-let-t-snow-beautiful-christmas-snow.json')} autoPlay loop />
+        <LottieView source={require('../../assets/lottieJson/88298-let-t-snow-beautiful-christmas-snow.json')} autoPlay loop />
     );
 };
 

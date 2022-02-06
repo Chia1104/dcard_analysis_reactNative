@@ -19,6 +19,11 @@ const LoginScreen = () => {
     const loading  = useSelector((state) => state.auth.loading);
     const dispatch = useDispatch();
 
+    const [email, setEmail] = React.useState('');
+    const onEmailChange = query => setEmail(query);
+    const [password, setPassword] = React.useState('');
+    const onPasswordChange = query => setPassword(query);
+
     return (
         <SafeAreaView style={{ flex: 1 , alignItems: "center"}}>
             <BackgroundAnimation />
@@ -47,7 +52,12 @@ const LoginScreen = () => {
                                 w={{
                                     base: "75%",
                                     md: "25%",
-                                }} InputLeftElement={<Icon as={<MaterialIcons name="email" />} size={5} ml="2" color="white" />} placeholder="Email" />
+                                }}
+                                InputLeftElement={<Icon as={<MaterialIcons name="email" />} size={5} ml="2" color="white" />}
+                                placeholder="Email"
+                                onChangeText={onEmailChange}
+                                value={email}
+                            />
                             <Input
                                 size="lg"
                                 variant="rounded"
@@ -55,9 +65,14 @@ const LoginScreen = () => {
                                 w={{
                                     base: "75%",
                                     md: "25%"
-                                }} InputRightElement={<Icon as={<MaterialIcons name="visibility-off" />} size={5} mr="2" color="white" />} placeholder="Password" />
+                                }}
+                                InputRightElement={<Icon as={<MaterialIcons name="visibility-off" />} size={5} mr="2" color="white" />}
+                                placeholder="Password"
+                                onChangeText={onPasswordChange}
+                                value={password}
+                            />
                             <Button size="sm" variant="outline" mb={2} onPress={() => {
-                                dispatch(loginAction("test@gmail.com", "test123"));
+                                dispatch(loginAction(email, password));
                             }}>
                                 Login
                             </Button>
