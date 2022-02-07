@@ -6,7 +6,7 @@ import {
     SUCCESS_LOGIN_REQUEST,
     FAIL_LOGIN_REQUEST,
     LOGOUT_REQUEST,
-    REMEMBER_LOGIN,
+    CLOSE_LOGIN_ALERT,
 } from "../../utils/constants";
 
 export const authReducer = (
@@ -15,6 +15,7 @@ export const authReducer = (
         verified: null,
         userInfo: null,
         error: "",
+        status: null,
     },
     action
 ) => {
@@ -28,6 +29,7 @@ export const authReducer = (
                 verified: true,
                 userInfo: action.payload,
                 error: "",
+                status: 200,
             };
         case FAIL_REGISTER_REQUEST:
             return {
@@ -36,6 +38,7 @@ export const authReducer = (
                 verified: false,
                 userInfo: null,
                 error: action.payload,
+                status: 401,
             };
         case BEGIN_LOGIN_REQUEST:
             return { ...state, loading: true };
@@ -46,6 +49,7 @@ export const authReducer = (
                 verified: true,
                 userInfo: action.payload,
                 error: "",
+                status: 200,
             };
         case FAIL_LOGIN_REQUEST:
             return {
@@ -54,6 +58,7 @@ export const authReducer = (
                 verified: false,
                 userInfo: null,
                 error: action.payload,
+                status: 401,
             };
         case LOGOUT_REQUEST:
             return {
@@ -63,10 +68,9 @@ export const authReducer = (
                 userInfo: null,
                 error: "",
             };
-        case REMEMBER_LOGIN:
+        case CLOSE_LOGIN_ALERT:
             return {
-                ...state,
-                verified: action.payload,
+                status: null,
             };
         default:
             return state;

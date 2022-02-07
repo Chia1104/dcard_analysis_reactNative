@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme } from "react-native";
 import {Input, Box, Center, Icon, FormControl, WarningOutlineIcon, Button, Stack, AspectRatio, Image, Heading, HStack, NativeBaseProvider} from "native-base";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -7,6 +7,8 @@ import BackgroundAnimation from "../components/BackgroundAnimation";
 import CubesLoading from "../components/CubesLoading";
 import {useDispatch, useSelector} from "react-redux";
 import {loginAction} from "../redux/actions/AuthAction";
+import { Snackbar } from 'react-native-paper';
+import {BEGIN_LOGIN_REQUEST, CLOSE_LOGIN_ALERT} from "../utils/constants";
 
 const LoginScreen = () => {
 
@@ -17,12 +19,60 @@ const LoginScreen = () => {
     };
 
     const loading  = useSelector((state) => state.auth.loading);
+    const status  = useSelector((state) => state.auth.status);
     const dispatch = useDispatch();
-
     const [email, setEmail] = React.useState('');
     const onEmailChange = query => setEmail(query);
+    const [emailInvalid, setEmailInvalid] = React.useState(true);
     const [password, setPassword] = React.useState('');
     const onPasswordChange = query => setPassword(query);
+    const [passwordInvalid, setPasswordInvalid] = React.useState(true);
+    const [loginDisabled, setLoginDisabled] = React.useState(true);
+    const [visible, setVisible] = React.useState(false);
+    const statusCheck = () => {
+        if (status === 401) {
+            setVisible(true)
+        }
+    }
+    useEffect(() => {
+        statusCheck()
+    }, [status])
+    const onDismissSnackBar = () => {
+        dispatch({ type: CLOSE_LOGIN_ALERT });
+        setVisible(false);
+    };
+    const checkEmail = () => {
+        if (email === '') {
+            setEmailInvalid(true);
+        } else {
+            setEmailInvalid(false);
+        }
+    };
+    useEffect(() => {
+        checkEmail()
+    }, [email])
+    const checkPassword = () => {
+        if (password === '') {
+            setPasswordInvalid(true);
+        } else {
+            setPasswordInvalid(false);
+        }
+    };
+    useEffect(() => {
+        checkPassword()
+    }, [password])
+    const loginCheck = () => {
+        if (password === '' || email === '') {
+            setLoginDisabled(true);
+        } else {
+            setLoginDisabled(false);
+        }
+    };
+    useEffect(() => {
+        loginCheck()
+    }, [email, password])
+    const [showPassword, setShowPassword] = React.useState(false);
+    const eyeClick = () => setShowPassword(!showPassword);
 
     return (
         <SafeAreaView style={{ flex: 1 , alignItems: "center"}}>
@@ -45,33 +95,43 @@ const LoginScreen = () => {
                             color: "warmGray.50",
                             textAlign: "center"
                         }}>
-                            <Input
-                                size="lg"
-                                variant="rounded"
-                                mb={2}
-                                w={{
-                                    base: "75%",
-                                    md: "25%",
-                                }}
-                                InputLeftElement={<Icon as={<MaterialIcons name="email" />} size={5} ml="2" color="white" />}
-                                placeholder="Email"
-                                onChangeText={onEmailChange}
-                                value={email}
-                            />
-                            <Input
-                                size="lg"
-                                variant="rounded"
-                                mb={6}
-                                w={{
-                                    base: "75%",
-                                    md: "25%"
-                                }}
-                                InputRightElement={<Icon as={<MaterialIcons name="visibility-off" />} size={5} mr="2" color="white" />}
-                                placeholder="Password"
-                                onChangeText={onPasswordChange}
-                                value={password}
-                            />
-                            <Button size="sm" variant="outline" mb={2} onPress={() => {
+                            <FormControl isInvalid={emailInvalid} mb={2}>
+                                <Input
+                                    type="email"
+                                    size="lg"
+                                    variant="rounded"
+                                    w={{
+                                        base: "75%",
+                                        md: "25%",
+                                    }}
+                                    InputLeftElement={<Icon as={<MaterialIcons name="email" />} size={5} ml="2" color="white" />}
+                                    placeholder="Email"
+                                    onChangeText={onEmailChange}
+                                    value={email}
+                                />
+                                <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                                    Can't be empty!
+                                </FormControl.ErrorMessage>
+                            </FormControl>
+                            <FormControl isInvalid={passwordInvalid} mb={6}>
+                                <Input
+                                    type={showPassword ? "text" : "password"}
+                                    size="lg"
+                                    variant="rounded"
+                                    w={{
+                                        base: "75%",
+                                        md: "25%"
+                                    }}
+                                    InputRightElement={<Icon as={<MaterialIcons name={showPassword ? "visibility-off" : "visibility"} onPress={eyeClick}/>} size={5} mr="2" color="white" />}
+                                    placeholder="Password"
+                                    onChangeText={onPasswordChange}
+                                    value={password}
+                                />
+                                <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
+                                    Can't be empty!
+                                </FormControl.ErrorMessage>
+                            </FormControl>
+                            <Button size="sm" variant="outline" mb={2} isDisabled={loginDisabled} onPress={() => {
                                 dispatch(loginAction(email, password));
                             }}>
                                 Login
@@ -83,6 +143,18 @@ const LoginScreen = () => {
                     </Center>
                 </NativeBaseProvider>
             )}
+            <Snackbar
+                visible={visible}
+                onDismiss={onDismissSnackBar}
+                action={{
+                    label: 'Close',
+                    onPress: () => {
+                        dispatch({ type: CLOSE_LOGIN_ALERT });
+                    },
+                }}
+                style={styles.alertBox}>
+                Login Failed!
+            </Snackbar>
         </SafeAreaView>
     );
 };
@@ -101,6 +173,9 @@ const styles = StyleSheet.create({
         shadowRadius: 3.84,
 
         elevation: 5,
+    },
+    alertBox: {
+        marginBottom: 30,
     },
     lightContainer: {
         backgroundColor: 'white',
