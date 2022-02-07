@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
-import { SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme } from "react-native";
-import {Input, Box, Center, Icon, FormControl, WarningOutlineIcon, Button, Stack, AspectRatio, Image, Heading, HStack, NativeBaseProvider} from "native-base";
+import { SafeAreaView, StyleSheet } from "react-native";
+import {Input, Box, Center, Icon, FormControl, WarningOutlineIcon, Button, NativeBaseProvider} from "native-base";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 import { LinearGradient } from 'expo-linear-gradient';
 import BackgroundAnimation from "../components/BackgroundAnimation";
@@ -8,7 +8,7 @@ import CubesLoading from "../components/CubesLoading";
 import {useDispatch, useSelector} from "react-redux";
 import {loginAction} from "../redux/actions/AuthAction";
 import { Snackbar } from 'react-native-paper';
-import {BEGIN_LOGIN_REQUEST, CLOSE_LOGIN_ALERT} from "../utils/constants";
+import {CLOSE_LOGIN_ALERT} from "../utils/constants";
 
 const LoginScreen = () => {
 
@@ -42,10 +42,15 @@ const LoginScreen = () => {
         setVisible(false);
     };
     const checkEmail = () => {
-        if (email === '') {
-            setEmailInvalid(true);
-        } else {
+        let mail_format = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (String(email)
+            .toLowerCase()
+            .match(
+                mail_format
+            )) {
             setEmailInvalid(false);
+        } else {
+            setEmailInvalid(true);
         }
     };
     useEffect(() => {
@@ -62,7 +67,7 @@ const LoginScreen = () => {
         checkPassword()
     }, [password])
     const loginCheck = () => {
-        if (password === '' || email === '') {
+        if (passwordInvalid === true || emailInvalid === true) {
             setLoginDisabled(true);
         } else {
             setLoginDisabled(false);
@@ -110,7 +115,7 @@ const LoginScreen = () => {
                                     value={email}
                                 />
                                 <FormControl.ErrorMessage leftIcon={<WarningOutlineIcon size="xs" />}>
-                                    Can't be empty!
+                                    Enter valid Email!
                                 </FormControl.ErrorMessage>
                             </FormControl>
                             <FormControl isInvalid={passwordInvalid} mb={6}>
