@@ -9,13 +9,15 @@ const DcardDetailScreen = ({ route }) => {
     const {postId} = route.params;
 
     const [userInfo,setUserInfo]=useState(null)
-    const getUserInfo = async () => {
+    const getDcardDetails = async () => {
         try {
             const item = await AsyncStorage.getItem('userInfo');
             const itemParse = JSON.parse(item);
             setUserInfo(itemParse.token)
+            dispatch(setDcardDetail(postId, itemParse.token));
         } catch (e) {
             setUserInfo(null)
+            dispatch(setDcardDetail(postId, userInfo));
             console.log("error", e);
         }
     };
@@ -24,8 +26,7 @@ const DcardDetailScreen = ({ route }) => {
     const { loading } = useSelector((state) => state.dcards.requestDcardDetail);
     const dispatch = useDispatch();
     useEffect(() => {
-        getUserInfo();
-        dispatch(setDcardDetail(postId, userInfo));
+        getDcardDetails();
     }, [])
 
     const colorScheme = useColorScheme();

@@ -1,10 +1,11 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {SafeAreaView, FlatList, View, Text, StyleSheet, useColorScheme, TouchableOpacity} from "react-native";
 import { Searchbar, Provider } from 'react-native-paper';
 import DcardList from "../components/DcardList";
 import {useDispatch, useSelector} from "react-redux";
-import {searchDcard} from "../redux/actions/DcardsAction";
+import {searchDcard, setDcardDetail} from "../redux/actions/DcardsAction";
 import LoadingList from "../components/LoadingList";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const SearchScreen = ({ navigation }) => {
 
@@ -27,6 +28,20 @@ const SearchScreen = ({ navigation }) => {
         colorScheme === 'light' ? styles.lightContainer : styles.darkItemContainer;
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
 
+    const [userInfo,setUserInfo] = useState(null)
+    const getSearchDcard = async () => {
+        try {
+            const item = await AsyncStorage.getItem('userInfo');
+            const itemParse = JSON.parse(item);
+            setUserInfo(itemParse.token)
+            dispatch(searchDcard(searchQuery, itemParse.token))
+        } catch (e) {
+            setUserInfo(null)
+            dispatch(searchDcard(searchQuery, userInfo))
+            console.log("error", e);
+        }
+    };
+
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
             <Provider>
@@ -35,7 +50,7 @@ const SearchScreen = ({ navigation }) => {
                     onChangeText={onChange}
                     onIconPress={(query) => {
                         // setSearchQuery(query)
-                        dispatch(searchDcard(searchQuery))
+                        getSearchDcard()
                     }}
                     value={searchQuery}
                 />

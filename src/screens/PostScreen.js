@@ -23,23 +23,25 @@ const PostScreen = ({ navigation }) => {
     const themeProgressBarStyle = colorScheme === 'light' ? styles.lightProgressBar : styles.darkProgressBar;
 
     const [userInfo,setUserInfo]=useState(null)
-    const getUserInfo = async () => {
+
+    const getDcardList = async () => {
         try {
             const item = await AsyncStorage.getItem('userInfo');
             const itemParse = JSON.parse(item);
             setUserInfo(itemParse.token)
+            dispatch(setDcardsList(30, itemParse.token));
         } catch (e) {
             setUserInfo(null)
+            dispatch(setDcardsList(30, userInfo));
             console.log("error", e);
         }
-    };
+    }
 
     const allDcards = useSelector((state) => state.dcards.allDcards);
     const { loading } = useSelector((state) => state.dcards.requestDcards);
     const dispatch = useDispatch();
     useEffect(() => {
-        getUserInfo();
-        dispatch(setDcardsList(30, userInfo));
+        getDcardList();
     }, [])
 
     return (

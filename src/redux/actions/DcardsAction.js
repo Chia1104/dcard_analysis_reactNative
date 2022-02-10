@@ -22,6 +22,7 @@ import {
     getMonthDcards,
     getWeekDcards,
 } from "../../api";
+import {logout} from "./AuthAction";
 
 
 export const setDcardDetail = (id, token) => async (dispatch) => {
@@ -32,11 +33,13 @@ export const setDcardDetail = (id, token) => async (dispatch) => {
             type: SET_DCARD_DETAIL,
             payload: dcardDetail,
         });
+        if (dcardDetail.message === "Unauthenticated.") {
+            dispatch(logout);
+        }
+        dispatch({ type: SUCCESS_DCARD_DETAIL_REQUEST });
     } catch (error) {
         console.log(error);
         dispatch({ type: FAIL_DCARD_DETAIL_REQUEST, payload: error });
-    } finally {
-        dispatch({ type: SUCCESS_DCARD_DETAIL_REQUEST });
     }
 };
 
@@ -49,11 +52,13 @@ export const setDcardsList = (limit, token) => async (dispatch) => {
             type: SET_DCARDS_LIST,
             payload: allDcards,
         });
+        if (allDcards.message === "Unauthenticated.") {
+            dispatch(logout);
+        }
+        dispatch({ type: SUCCESS_DCARDS_REQUEST });
     } catch (error) {
         console.log(error);
         dispatch({ type: FAIL_DCARDS_REQUEST, payload: error });
-    } finally {
-        dispatch({ type: SUCCESS_DCARDS_REQUEST });
     }
 };
 
@@ -65,10 +70,12 @@ export const searchDcard = (searchContent, token) => async (dispatch) => {
             type: SET_SEARCH_DCARDS_LIST,
             payload: dcardSearch,
         });
+        if (dcardSearch.message === "Unauthenticated.") {
+            dispatch(logout);
+        }
+        dispatch({ type: SUCCESS_SEARCH_DCARDS_REQUEST });
     } catch (error) {
         console.log(error);
         dispatch({ type: FAIL_SEARCH_DCARDS_REQUEST, payload: error });
-    } finally {
-        dispatch({ type: SUCCESS_SEARCH_DCARDS_REQUEST });
     }
 }
