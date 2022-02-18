@@ -58,7 +58,7 @@ const SearchScreen = ({ navigation }) => {
                     <LoadingList />
                 ) : (
                     <FlatList
-                        data={allDcards}
+                        data={allDcards.data}
                         renderItem={({ item }) => (
                             <TouchableOpacity
                                 onPress={() =>

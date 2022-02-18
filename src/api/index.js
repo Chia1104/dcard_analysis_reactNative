@@ -1,28 +1,12 @@
-const URL_NOW = "https://dcard-analysis-laravel-fdqsyjapma-de.a.run.app/api";
-const URL_DEV = "https://dcard-analysis-laravel-develop-fdqsyjapma-de.a.run.app/api";
-const URL_BACKUP = "https://fathomless-fjord-03751.herokuapp.com/api";
-const URL_LOCAL = "http://127.0.0.1:8000/api";
+const URL_NOW = "https://dcard-analysis-laravel-fdqsyjapma-de.a.run.app/api/v2";
+const URL_DEV = "https://dcard-analysis-laravel-develop-fdqsyjapma-de.a.run.app/api/v2";
+const URL_BACKUP = "https://fathomless-fjord-03751.herokuapp.com/api/v2";
+const URL_LOCAL = "http://127.0.0.1:8000/api/v2";
 const URL = URL_NOW;
 
-export const getAllDcards = async (limit, token) => {
+export const getAllDcards = async (token) => {
     try {
-        const response = await fetch(`${URL}/dcard?limit=${limit}`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-        });
-        return await response.json();
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-export const getAllDcardsBefore = async (beforeId, limit, token) => {
-    try {
-        const response = await fetch(`${URL}/dcardBefore?beforeId=${beforeId}&limit=${limit}`, {
+        const response = await fetch(`${URL}/dcard`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -38,7 +22,7 @@ export const getAllDcardsBefore = async (beforeId, limit, token) => {
 
 export const searchDcards = async (content, token) => {
     try {
-        const response = await fetch(`${URL}/dcardSearch?search=${content}`, {
+        const response = await fetch(`${URL}/searchDcard?search=${content}`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -54,7 +38,7 @@ export const searchDcards = async (content, token) => {
 
 export const getDcardsById = async (id, token) => {
     try {
-        const response = await fetch(`${URL}/article/${id}`, {
+        const response = await fetch(`${URL}/dcard/${id}`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -119,54 +103,6 @@ export const getMonthDcards = async (token) => {
 export const getWeekDcards = async (token) => {
     try {
         const response = await fetch(`${URL}/date/week`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-        });
-        return await response.json();
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-export const getGBChart12Data = async (token) => {
-    try {
-        const response = await fetch(`${URL}/GBChart12Data`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-        });
-        return await response.json();
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-export const getGBChart4Data = async (token) => {
-    try {
-        const response = await fetch(`${URL}/GBChart4Data`, {
-            method: 'GET',
-            headers: {
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`
-            },
-        });
-        return await response.json();
-    } catch (error) {
-        console.error(error);
-    }
-}
-
-export const getLineChart12Data = async (token) => {
-    try {
-        const response = await fetch(`${URL}/LineChart12Data`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',

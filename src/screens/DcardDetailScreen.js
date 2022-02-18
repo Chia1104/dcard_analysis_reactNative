@@ -78,26 +78,26 @@ const DcardDetailScreen = ({ route }) => {
                             <View style={styles.box1}>
                                 <View style={styles.box2}>
                                     <Text style={[styles.detailsStyle, themeTextStyle]}>
-                                        {item.SA_Class}
+                                        {item.nlp === null ? <></> : item.nlp.SA_Class}
                                     </Text>
                                     <Text style={[styles.detailsStyle, themeTextStyle]}>
-                                        ({item.SA_Score})
+                                        {item.nlp === null ? <></> : `(${item.nlp.SA_Score})`}
                                     </Text>
                                 </View>
 
                                 <Text style={[styles.dateStyle]}>
-                                    {item.CreatedAt}
+                                    {item.DateTime}
                                 </Text>
                             </View>
                             <View style={styles.box1}>
-                                <Text style={[styles.detailsStyle]}>
-                                    {item.KeywordLevel1}
+                                <Text style={[styles.detailsStyle, themeTextStyle]}>
+                                    {item.comparison === null ? <></> : item.comparison.KeywordLevel1}
                                 </Text>
-                                <Text style={[styles.detailsStyle]}>
-                                    {item.KeywordLevel2}
+                                <Text style={[styles.detailsStyle, themeTextStyle]}>
+                                    {item.comparison === null ? <></> : item.comparison.KeywordLevel2}
                                 </Text>
-                                <Text style={[styles.detailsStyle]}>
-                                    {item.KeywordLevel3}
+                                <Text style={[styles.detailsStyle, themeTextStyle]}>
+                                    {item.comparison === null ? <></> : item.comparison.KeywordLevel3}
                                 </Text>
                             </View>
                             <Text style={[styles.contentStyle, themeTextStyle]}>

@@ -29,10 +29,10 @@ const PostScreen = ({ navigation }) => {
             const item = await AsyncStorage.getItem('userInfo');
             const itemParse = JSON.parse(item);
             setUserInfo(itemParse.token)
-            dispatch(setDcardsList(30, itemParse.token));
+            dispatch(setDcardsList(itemParse.token));
         } catch (e) {
             setUserInfo(null)
-            dispatch(setDcardsList(30, userInfo));
+            dispatch(setDcardsList(userInfo));
             console.log("error", e);
         }
     }
@@ -50,7 +50,7 @@ const PostScreen = ({ navigation }) => {
                 <LoadingList />
             ) : (
                 <FlatList
-                    data={allDcards}
+                    data={allDcards.data}
                     renderItem={({ item }) => (
                         <TouchableOpacity
                             onPress={() =>

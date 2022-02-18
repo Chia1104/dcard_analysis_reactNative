@@ -25,16 +25,18 @@ const DcardList = ({ dcard }) => {
                 </Text>
             </View>
             <View style={styles.box2}>
-                <View style={styles.box3}>
-                    <Text style={[styles.detailStyle, themeTextStyle]}>
-                        {dcard.SA_Class}
-                    </Text>
-                    <Text style={[styles.detailStyle, themeTextStyle]}>
-                        ({dcard.SA_Score})
-                    </Text>
-                </View>
+                {dcard.nlp === undefined ? <></> :
+                    <View style={styles.box3}>
+                        <Text style={[styles.detailStyle, themeTextStyle]}>
+                            {dcard.nlp === null ? <></> : dcard.nlp.SA_Class}
+                        </Text>
+                        <Text style={[styles.detailStyle, themeTextStyle]}>
+                            {dcard.nlp === null ? <></> : `(${dcard.nlp.SA_Score})`}
+                        </Text>
+                    </View>
+                }
                 <Text style={[styles.dateStyle]}>
-                    {dcard.CreatedAt}
+                    {dcard.DateTime}
                 </Text>
             </View>
         </View>

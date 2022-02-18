@@ -43,11 +43,11 @@ export const setDcardDetail = (id, token) => async (dispatch) => {
     }
 };
 
-export const setDcardsList = (limit, token) => async (dispatch) => {
+export const setDcardsList = (token) => async (dispatch) => {
     let allDcards = [];
     dispatch({ type: BEGIN_DCARDS_REQUEST });
     try {
-        allDcards = await getAllDcards(limit, token);
+        allDcards = await getAllDcards(token);
         dispatch({
             type: SET_DCARDS_LIST,
             payload: allDcards,
