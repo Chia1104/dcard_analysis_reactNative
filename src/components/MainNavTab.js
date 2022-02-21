@@ -6,7 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import {IconButton } from "react-native-paper";
+import {DefaultTheme, IconButton} from "react-native-paper";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import HomeScreen from "../screens/HomeScreen";
@@ -39,7 +39,15 @@ const MainNavTab = () => {
     const themeContainerColor = colorScheme === 'light' ? "white" : "black";
 
     return (
-        <NavigationContainer>
+        <NavigationContainer
+            theme={{
+                dark: true,
+                colors: {
+                    ...DefaultTheme.colors,
+                    background: '#000',
+                    card: '#fff',
+                },
+            }}>
             <BottomTab.Navigator
                 initialRouteName="Home"
                 activeColor={themeTextColor}
@@ -70,6 +78,7 @@ const MainNavTab = () => {
                                             color: {themeTextColor},
                                         },
                                         headerTitleAlign: 'center',
+                                        cardStyle: {opacity: 1},
                                     }}
                                 />
                             </NativeStack.Navigator>
@@ -107,6 +116,7 @@ const MainNavTab = () => {
                                                 color: {themeTextColor},
                                             },
                                             headerTitleAlign: 'center',
+                                            cardStyle: {opacity: 1},
                                         })}
                                 />
                                 <NativeStack.Screen
@@ -122,6 +132,7 @@ const MainNavTab = () => {
                                             color: {themeTextColor},
                                         },
                                         headerTitleAlign: 'center',
+                                        cardStyle: {opacity: 1},
                                     }}/>
                                 <NativeStack.Screen
                                     name="searchStack"
@@ -135,6 +146,7 @@ const MainNavTab = () => {
                                         color: {themeTextColor},
                                     },
                                     headerTitleAlign: 'center',
+                                    cardStyle: {opacity: 1},
                                 }}/>
                             </NativeStack.Navigator>
                         </SafeAreaProvider>
@@ -164,6 +176,7 @@ const MainNavTab = () => {
                                             color: {themeTextColor},
                                         },
                                         headerTitleAlign: 'center',
+                                        cardStyle: {opacity: 1},
                                     }}
                                 />
                             </NativeStack.Navigator>
@@ -195,6 +208,7 @@ const MainNavTab = () => {
                                             color: {themeTextColor},
                                         },
                                         headerTitleAlign: 'center',
+                                        cardStyle: {opacity: 1},
                                     }}
                                 />
                             </NativeStack.Navigator>
@@ -234,6 +248,7 @@ const MainNavTab = () => {
                                                 color: {themeTextColor},
                                             },
                                             headerTitleAlign: 'center',
+                                            cardStyle: {opacity: 1},
                                         })}
                                 />
                             </NativeStack.Navigator>
