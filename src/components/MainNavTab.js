@@ -16,7 +16,7 @@ import SearchScreen from "../screens/SearchScreen";
 import ChatScreen from "../screens/ChatScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import ChartTopTab from "./ChartTopTab";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {expandBottomSheet} from "../redux/actions/BottomSheetAction";
 
 const NativeStack = createNativeStackNavigator();
