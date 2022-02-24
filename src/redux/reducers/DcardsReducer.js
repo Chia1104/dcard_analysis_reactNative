@@ -1,24 +1,38 @@
 import {
     SET_DCARD_DETAIL,
     SET_DCARDS_LIST,
+    SET_MORE_DCARDS_LIST,
     SET_SEARCH_DCARDS_LIST,
+    SET_MORE_SEARCH_DCARDS_LIST,
     BEGIN_DCARDS_REQUEST,
     SUCCESS_DCARDS_REQUEST,
     FAIL_DCARDS_REQUEST,
+    BEGIN_MORE_DCARDS_REQUEST,
+    SUCCESS_MORE_DCARDS_REQUEST,
+    FAIL_MORE_DCARDS_REQUEST,
     BEGIN_DCARD_DETAIL_REQUEST,
     SUCCESS_DCARD_DETAIL_REQUEST,
     FAIL_DCARD_DETAIL_REQUEST,
     BEGIN_SEARCH_DCARDS_REQUEST,
     SUCCESS_SEARCH_DCARDS_REQUEST,
     FAIL_SEARCH_DCARDS_REQUEST,
+    BEGIN_MORE_SEARCH_DCARDS_REQUEST,
+    SUCCESS_MORE_SEARCH_DCARDS_REQUEST,
+    FAIL_MORE_SEARCH_DCARDS_REQUEST,
 } from "../../utils/constants";
 
 export const dcardsReducer = (
     state = {
         allDcards: [],
+        moreDcards: [],
         dcardDetail: [],
         searchDcard: [],
+        searchMoreDcard: [],
         requestDcards: {
+            loading: false,
+            error: null,
+        },
+        requestMoreDcards: {
             loading: false,
             error: null,
         },
@@ -27,6 +41,10 @@ export const dcardsReducer = (
             error: null,
         },
         requestSearchDcard: {
+            loading: false,
+            error: null,
+        },
+        requestMoreSearchDcard: {
             loading: false,
             error: null,
         },
@@ -39,10 +57,20 @@ export const dcardsReducer = (
                 ...state,
                 allDcards: action.payload,
             };
+        case SET_MORE_DCARDS_LIST:
+            return {
+                ...state,
+                moreDcards: action.payload,
+            };
         case SET_SEARCH_DCARDS_LIST:
             return {
                 ...state,
                 searchDcard: action.payload,
+            };
+        case SET_MORE_SEARCH_DCARDS_LIST:
+            return {
+                ...state,
+                searchMoreDcard: action.payload,
             };
         case SET_DCARD_DETAIL:
             return {
@@ -64,6 +92,25 @@ export const dcardsReducer = (
                 ...state,
                 requestDcards: {
                     ...state.requestDcards,
+                    loading: false,
+                    error: action.payload,
+                },
+            };
+        case BEGIN_MORE_DCARDS_REQUEST:
+            return {
+                ...state,
+                requestMoreDcards: { ...state.requestMoreDcards, loading: true },
+            };
+        case SUCCESS_MORE_DCARDS_REQUEST:
+            return {
+                ...state,
+                requestMoreDcards: { ...state.requestMoreDcards, loading: false },
+            };
+        case FAIL_MORE_DCARDS_REQUEST:
+            return {
+                ...state,
+                requestMoreDcards: {
+                    ...state.requestMoreDcards,
                     loading: false,
                     error: action.payload,
                 },

@@ -66,42 +66,42 @@ const DcardDetailScreen = ({ route }) => {
             {loading === true ? <LoadingDetail /> : (
                 <FlatList
                     data={dcardDetail}
-                    keyExtractor={({ Id }, index) => Id}
+                    keyExtractor={({ id }, index) => id}
                     renderItem={({ item }) => (
                         <View style={styles.containerStyle}>
                             <View style={{ marginBottom: 25 }}>
                                 <OpenURLButton url={supportedURL}>Open Dcard</OpenURLButton>
                             </View>
                             <Text style={[styles.titleStyle, themeTextStyle]}>
-                                {item.Title}
+                                {item.title}
                             </Text>
                             <View style={styles.box1}>
                                 <View style={styles.box2}>
                                     <Text style={[styles.detailsStyle, themeTextStyle]}>
-                                        {item.nlp === null ? <></> : item.nlp.SA_Class}
+                                        {item.nlp === null ? <></> : item.nlp.sa_class}
                                     </Text>
                                     <Text style={[styles.detailsStyle, themeTextStyle]}>
-                                        {item.nlp === null ? <></> : `(${item.nlp.SA_Score})`}
+                                        {item.nlp === null ? <></> : `(${item.nlp.sa_score})`}
                                     </Text>
                                 </View>
 
                                 <Text style={[styles.dateStyle]}>
-                                    {item.DateTime}
+                                    {item.date_time}
                                 </Text>
                             </View>
                             <View style={styles.box1}>
                                 <Text style={[styles.detailsStyle, themeTextStyle]}>
-                                    {item.comparison === null ? <></> : item.comparison.KeywordLevel1}
+                                    {item.comparison === null ? <></> : item.comparison.keyword_level1}
                                 </Text>
                                 <Text style={[styles.detailsStyle, themeTextStyle]}>
-                                    {item.comparison === null ? <></> : item.comparison.KeywordLevel2}
+                                    {item.comparison === null ? <></> : item.comparison.keyword_level2}
                                 </Text>
                                 <Text style={[styles.detailsStyle, themeTextStyle]}>
-                                    {item.comparison === null ? <></> : item.comparison.KeywordLevel3}
+                                    {item.comparison === null ? <></> : item.comparison.keyword_level3}
                                 </Text>
                             </View>
                             <Text style={[styles.contentStyle, themeTextStyle]}>
-                                {item.Content}
+                                {item.content}
                             </Text>
                         </View>
                     )}

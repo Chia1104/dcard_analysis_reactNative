@@ -3,7 +3,7 @@ import { ActivityIndicator, SafeAreaView, FlatList, TouchableOpacity, RefreshCon
 import DcardList from "../components/DcardList";
 import FloatingButton from "../components/FloatingButton";
 import { useDispatch, useSelector } from "react-redux";
-import {setDcardsList} from "../redux/actions/DcardsAction";
+import {setDcardsList, setMoreDcardsList} from "../redux/actions/DcardsAction";
 import LoadingList from "../components/LoadingList";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -29,7 +29,7 @@ const PostScreen = ({ navigation }) => {
             const item = await AsyncStorage.getItem('userInfo');
             const itemParse = JSON.parse(item);
             setUserInfo(itemParse.token)
-            dispatch(setDcardsList(itemParse.token));
+            dispatch(setDcardsList(1, itemParse.token));
         } catch (e) {
             setUserInfo(null)
             dispatch(setDcardsList(userInfo));
@@ -38,11 +38,33 @@ const PostScreen = ({ navigation }) => {
     }
 
     const allDcards = useSelector((state) => state.dcards.allDcards);
+    let dcards = allDcards.data;
     const { loading } = useSelector((state) => state.dcards.requestDcards);
+    const moreDcards = useSelector((state) => state.dcards.moreDcards);
+    let moredcards = moreDcards.data;
+    const { loadingMore } = useSelector((state) => state.dcards.requestMoreDcards);
     const dispatch = useDispatch();
     useEffect(() => {
         getDcardList();
     }, [])
+
+    let page = 0;
+    const getMoreDcardList = async () => {
+        if (page < allDcards.last_page) {
+            page += 1;
+        }
+        try {
+            const item = await AsyncStorage.getItem('userInfo');
+            const itemParse = JSON.parse(item);
+            setUserInfo(itemParse.token)
+            dispatch(setMoreDcardsList(page, itemParse.token));
+            dcards.push(moredcards);
+        } catch (e) {
+            setUserInfo(null)
+            dispatch(setDcardsList(userInfo));
+            console.log("error", e);
+        }
+    }
 
     return (
         <SafeAreaView style={[{ flex: 1 }, themeContainerStyle2]}>
@@ -50,24 +72,28 @@ const PostScreen = ({ navigation }) => {
                 <LoadingList />
             ) : (
                 <FlatList
-                    data={allDcards.data}
+                    data={dcards}
                     renderItem={({ item }) => (
                         <TouchableOpacity
                             onPress={() =>
                                 navigation.push("detailStack", {
-                                    postId: item.Id,
+                                    postId: item.id,
                                 })
                             }
                         >
                             <DcardList dcard={item} navigation={navigation} />
                         </TouchableOpacity>
                     )}
-                    keyExtractor={(item) => item.Id}
+                    keyExtractor={(item) => item.id}
                     onEndReached={null}
                     onEndReachedThreshold={0.9}
-                    extraData={null}
-                />
-            )}
+                    extraData={moreDcards}
+                />)}
+                {loadingMore === true ? (
+                    <LoadingList />
+                ) : (
+                    <></>
+                )}
             <FloatingButton />
         </SafeAreaView>
     );

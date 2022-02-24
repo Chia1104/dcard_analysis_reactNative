@@ -4,9 +4,9 @@ const URL_BACKUP = "https://fathomless-fjord-03751.herokuapp.com/api/v2";
 const URL_LOCAL = "http://127.0.0.1:8000/api/v2";
 const URL = URL_NOW;
 
-export const getAllDcards = async (token) => {
+export const getAllDcards = async (page, token) => {
     try {
-        const response = await fetch(`${URL}/dcard`, {
+        const response = await fetch(`${URL}/dcard?page=${page}`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -20,9 +20,9 @@ export const getAllDcards = async (token) => {
     }
 }
 
-export const searchDcards = async (content, token) => {
+export const searchDcards = async (content, page, token) => {
     try {
-        const response = await fetch(`${URL}/searchDcard?search=${content}`, {
+        const response = await fetch(`${URL}/searchDcard?search=${content}&page=${page}`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -52,9 +52,9 @@ export const getDcardsById = async (id, token) => {
     }
 }
 
-export const getDcardsByDate = async (date1, date2, token) => {
+export const getDcardsByDate = async (date1, date2, page, token) => {
     try {
-        const response = await fetch(`${URL}/date/${date1}/${date2}`, {
+        const response = await fetch(`${URL}/date/${date1}/${date2}?page=${page}`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -68,9 +68,9 @@ export const getDcardsByDate = async (date1, date2, token) => {
     }
 }
 
-export const getTodayDcards = async (token) => {
+export const getTodayDcards = async (page, token) => {
     try {
-        const response = await fetch(`${URL}/date/today`, {
+        const response = await fetch(`${URL}/date/today?page=${page}`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -84,9 +84,9 @@ export const getTodayDcards = async (token) => {
     }
 }
 
-export const getMonthDcards = async (token) => {
+export const getMonthDcards = async (page, token) => {
     try {
-        const response = await fetch(`${URL}/date/month`, {
+        const response = await fetch(`${URL}/date/month?page=${page}`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
@@ -100,9 +100,9 @@ export const getMonthDcards = async (token) => {
     }
 }
 
-export const getWeekDcards = async (token) => {
+export const getWeekDcards = async (page, token) => {
     try {
-        const response = await fetch(`${URL}/date/week`, {
+        const response = await fetch(`${URL}/date/week?page=${page}`, {
             method: 'GET',
             headers: {
                 Accept: 'application/json',
