@@ -34,10 +34,10 @@ const SearchScreen = ({ navigation }) => {
             const item = await AsyncStorage.getItem('userInfo');
             const itemParse = JSON.parse(item);
             setUserInfo(itemParse.token)
-            dispatch(searchDcard(searchQuery, itemParse.token))
+            dispatch(searchDcard(searchQuery, 1, itemParse.token))
         } catch (e) {
             setUserInfo(null)
-            dispatch(searchDcard(searchQuery, userInfo))
+            dispatch(searchDcard(searchQuery, 1, userInfo))
             console.log("error", e);
         }
     };
@@ -63,14 +63,14 @@ const SearchScreen = ({ navigation }) => {
                             <TouchableOpacity
                                 onPress={() =>
                                     navigation.push("detailStack", {
-                                        postId: item.Id,
+                                        postId: item.id,
                                     })
                                 }
                             >
                                 <DcardList dcard={item} navigation={navigation} />
                             </TouchableOpacity>
                         )}
-                        keyExtractor={(item) => item.Id}
+                        keyExtractor={(item) => item.id}
                         onEndReached={null}
                         onEndReachedThreshold={0.9}
                         extraData={null}

@@ -18,25 +18,25 @@ const DcardList = ({ dcard }) => {
         <View style={[styles.cardContainerStyle, themeItemContainerStyle]}>
             <View style={styles.box1}>
                 <Text style={[styles.titleStyle, themeTextStyle]} numberOfLines={1}>
-                    {dcard.Title}
+                    {dcard.title}
                 </Text>
                 <Text style={[styles.contentStyle, themeTextStyle]} numberOfLines={2}>
-                    {dcard.Content}
+                    {dcard.content}
                 </Text>
             </View>
             <View style={styles.box2}>
                 {dcard.nlp === undefined ? <></> :
                     <View style={styles.box3}>
                         <Text style={[styles.detailStyle, themeTextStyle]}>
-                            {dcard.nlp === null ? <></> : dcard.nlp.SA_Class}
+                            {dcard.nlp === null ? <></> : dcard.nlp.sa_class}
                         </Text>
                         <Text style={[styles.detailStyle, themeTextStyle]}>
-                            {dcard.nlp === null ? <></> : `(${dcard.nlp.SA_Score})`}
+                            {dcard.nlp === null ? <></> : `(${dcard.nlp.sa_score})`}
                         </Text>
                     </View>
                 }
                 <Text style={[styles.dateStyle]}>
-                    {dcard.DateTime}
+                    {dcard.date_time}
                 </Text>
             </View>
         </View>
