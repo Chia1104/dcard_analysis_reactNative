@@ -45,6 +45,7 @@ const MainNavTab = () => {
             <NavigationContainer
                 theme={{
                     dark: true,
+                    opacity: 1,
                     colors: {
                         ...DefaultTheme.colors,
                         background: 'transparent',
